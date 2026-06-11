@@ -1,0 +1,723 @@
+﻿/* =========================================================
+   DETAIL PAGE � Atlantic Drive (compact + vivid palette)
+   ========================================================= */
+
+/* =========================
+   0) ROOT / UTILS (������)
+   ========================= */
+:root{
+  --detail-gap: clamp(14px, 1.8vw, 22px);
+
+  --detail-radius-lg: 18px;
+  --detail-radius-md: 14px;
+  --detail-radius-sm: 10px;
+
+  /* ���� */
+  --ink: #072a66;                  /* ������� �������� ����� */
+  --ink-soft: #0b2b6b;             /* �������� */
+  --muted: rgba(8,31,78,.62);      /* ��������� ����� */
+
+  --brand-700: #1d4fff;            /* ������� ������ */
+  --brand-600: #2f65ff;
+  --brand-500: #4a7eff;
+  --brand-300: #bcd1ff;
+  --brand-100: #edf3ff;
+
+  --glass-bg: rgba(255,255,255,.95);
+  --glass-border: rgba(13,55,172,.10);
+  --shadow: 0 20px 40px rgba(29,79,255,.10);
+
+  --surface: #ffffff;
+  --surface-soft: #f6f8fe;
+
+  /* ������� �� ����� ����� (����) */
+  --number: #041b49;
+  --number-glow: 0 14px 26px rgba(4,27,73,.14);
+
+  /* ���������� */
+  --pill-bg: rgba(29,79,255,.08);
+  --pill-bd: rgba(29,79,255,.16);
+
+  /* ������ �� ��./���� */
+  --price-size: clamp(24px, 4.5vw, 28px);
+
+  /* �����/���� */
+  --ring: 0 0 0 3px rgba(29,79,255,.22);
+}
+
+img{ max-width:100%; height:auto; }
+
+/* =========================
+   1) PAGE LAYOUT
+   ========================= */
+.detail-page{
+  display:grid;
+  grid-template-columns:minmax(360px,52%) minmax(280px,1fr);
+  gap:var(--detail-gap);
+  padding-block:var(--detail-gap);
+  align-items:flex-start;
+  margin-top:5%;
+}
+@media (max-width:980px){ .detail-page{ grid-template-columns:1fr; } }
+
+/* =========================
+   2) MEDIA (LEFT)
+   ========================= */
+.detail-media{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:var(--detail-radius-lg);
+  padding:12px;
+  display:flex; flex-direction:column; gap:8px;
+  min-width:0;
+  box-shadow:var(--shadow);
+}
+.detail-media__main{
+  background:var(--surface);
+  border-radius:var(--detail-radius-md);
+  overflow:hidden;
+  aspect-ratio:16/9;
+  display:grid; place-items:center;
+  min-height:220px;
+}
+.detail-media__main img{ width:100%; height:100%; object-fit:cover; }
+
+.detail-media__thumbs{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(68px,1fr));
+  gap:6px;
+}
+.detail-media__thumbs .thumb{
+  border:1px solid transparent;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  padding:0;
+  cursor:pointer;
+  aspect-ratio:4/3;
+  display:grid; place-items:center;
+  transition:border-color .12s, box-shadow .12s, transform .12s;
+}
+.detail-media__thumbs .thumb img{ width:100%; height:100%; object-fit:cover; }
+.detail-media__thumbs .thumb:is(:hover,:focus-visible){
+  border-color:var(--brand-300);
+  box-shadow:0 0 0 2px rgba(29,79,255,.10);
+  transform:translateY(-1px);
+}
+.detail-media__thumbs .thumb.is-active{
+  border-color:var(--brand-600);
+  box-shadow:0 0 0 2px rgba(29,79,255,.18);
+}
+@media (max-width:540px){
+  .detail-media__thumbs{ grid-template-columns:repeat(auto-fit, minmax(58px,1fr)); }
+}
+
+/* =========================
+   3) INFO (RIGHT)
+   ========================= */
+.detail-info{
+  display:grid; gap:12px; min-width:0;
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:var(--detail-radius-lg);
+  padding:14px 14px 18px;
+  box-shadow:var(--shadow);
+}
+
+/* header */
+.detail-header h1{
+  margin:0 0 4px;
+  font-size:clamp(22px, 2.6vw, 30px);
+  color:var(--ink);
+  font-weight:900;
+  letter-spacing:-.01em;
+  text-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+.detail-header .muted{ margin:0; color:var(--muted); font-size:14px;display: none; }
+.detail-header .small{ font-size:11px; display: none;}
+
+/* =========================
+   4) PRICE BLOCK (��� ������)
+   ========================= */
+.detail-price-block{
+  display:grid;
+  grid-template-columns: 1fr minmax(200px, 280px);
+  grid-template-rows:auto auto;
+  align-items:center;
+  column-gap:14px; row-gap:10px;
+  background:var(--surface);
+  border:1px solid rgba(13,55,172,.08);
+  border-radius:14px;
+  padding:10px 12px;
+  box-shadow:0 18px 36px rgba(4,27,73,.08);
+}
+.detail-price-block > div:first-child{
+  grid-column:1; grid-row:1 / span 2;
+}
+
+/* ������ + ���� */
+.detail-price-block .label{
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.detail-price-block .price{
+  font-size:var(--price-size);
+  font-weight:900;
+  color:var(--number);
+  line-height:1.04;
+  margin:2px 0 0 0;
+  text-shadow: var(--number-glow);
+}
+.detail-price-block #carPriceNote{
+  display:block;
+  margin-top:2px;
+  font-size:var(--price-size);
+  font-weight:900;
+  color: #1d4fff69;
+  letter-spacing:.01em;
+}
+
+/* ����� ������ � ������������ + ������� */
+.views-pill{
+  grid-column:2; grid-row:1;
+  width:100%;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px;
+  background:var(--pill-bg);
+  border:1px solid var(--pill-bd);
+  border-radius:999px;
+  font-size:12px; font-weight:900; color:var(--ink);
+  white-space:nowrap;
+  box-shadow:0 8px 18px rgba(29,79,255,.10);
+}
+.views-pill__eye{ font-size:13px; line-height:1; }
+
+/* ������� � ����� �������� */
+.detail-price-block .btn{
+  grid-column:2; grid-row:2;
+  width:100%;
+  height:40px;
+  padding:0 12px;
+  font-size:14px; font-weight:900;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:12px;
+  color:#fff;
+  background: linear-gradient(180deg, var(--brand-600), var(--brand-700));
+  border:1px solid rgba(13,55,172,.15);
+  box-shadow:0 14px 32px rgba(29,79,255,.28), 0 1px 0 rgba(255,255,255,.35) inset;
+  transition: filter .12s, transform .06s, box-shadow .15s;
+}
+.detail-price-block .btn:hover{ filter:brightness(1.05); box-shadow:0 16px 36px rgba(29,79,255,.34); }
+.detail-price-block .btn:active{ transform:translateY(1px); }
+.detail-price-block .btn:focus-visible{ outline:none; box-shadow:var(--ring); }
+
+/* responsive � ���� ������ */
+@media (max-width:720px){
+  .detail-price-block{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto auto;
+  }
+  .detail-price-block > div:first-child{ grid-column:1; grid-row:auto; }
+  .views-pill{ grid-column:1; }
+  .detail-price-block .btn{ grid-column:1; }
+}
+
+/* =========================
+   5) SPECS
+   ========================= */
+.detail-specs{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+  gap:8px;
+}
+.detail-spec,
+.detail-info .detail-spec{
+  background:var(--surface);
+  border:1px solid rgba(13,55,172,.08);
+  border-radius:10px;
+  padding:6px 8px;
+  display:grid; gap:6px;
+  transition: box-shadow .12s, border-color .12s;
+}
+.detail-spec:hover{
+  border-color: var(--brand-300);
+  box-shadow: 0 8px 18px rgba(29,79,255,.08) inset;
+}
+.detail-spec__lbl{
+  font-size:11px; text-transform:uppercase;
+  color:rgba(8,31,78,.55);
+  letter-spacing:.04em; font-weight:500; line-height:1.05;
+}
+.detail-spec__val{
+  font-size:14px; font-weight:700; color:var(--ink); line-height:1.2;
+}
+
+/* =========================
+   6) DESCRIPTION
+   ========================= */
+.detail-extra h2{
+  font-size:14px; margin-bottom:4px;
+  color:var(--ink); font-weight:900;
+}
+.detail-extra p{
+  margin:0; color:rgba(8,31,78,.86);
+  line-height:1.45; font-size:14px;
+}
+
+/* =========================
+   7) TAGS
+   ========================= */
+.detail-tags{ display:flex; gap:6px; flex-wrap:wrap; }
+.detail-tags .tag{
+  background:var(--brand-100);
+  border:1px solid var(--pill-bd);
+  border-radius:999px;
+  padding:3px 10px;
+  font-size:11.5px; font-weight:800;
+  color:var(--ink); line-height:1;
+  display: none;
+}
+
+/* =========================
+   8) CONTACT CARD
+   ========================= */
+.contact-card{
+  background:var(--surface);
+  border:1px solid rgba(13,55,172,.08);
+  border-radius:14px; padding:8px 12px;
+  display:grid; gap:4px;
+  box-shadow:0 10px 24px rgba(4,27,73,.06);
+}
+.contact-card h2{ margin:0 0 4px; font-size:14px; color:var(--ink); font-weight:900; }
+.contact-card p{ margin:0; font-size:14px;color: #00000073;}
+.contact-card a{
+  color:var(--brand-700); font-weight:900; text-decoration:none;
+}
+.contact-card a:hover{ text-decoration:underline; }
+
+/* =========================
+   9) LIGHTBOX
+   ========================= */
+.img-lightbox{ position:fixed; inset:0; display:none; z-index:9999; align-items:center; justify-content:center; }
+.img-lightbox.is-on{ display:flex; }
+.img-lightbox__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.62);  -webkit-backdrop-filter: blur(2px); backdrop-filter:blur(2px); }
+.img-lightbox__body{ position:relative; background:rgba(0,0,0,.12); max-width:90vw; max-height:90vh; display:flex; align-items:center; justify-content:center; }
+.img-lightbox__body img{ max-width:88vw; max-height:88vh; object-fit:contain; transition:transform .15s ease-out; transform-origin:center center; background:#000; }
+.img-lightbox__close{ position:absolute; top:.3rem; right:.6rem; background:rgba(0,0,0,.55); border:none; color:#fff; font-size:1.8rem; line-height:1; cursor:pointer; padding:0 .35rem .2rem; }
+.img-lightbox__controls{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
+.img-lightbox__btn{ pointer-events:auto; background:rgba(0,0,0,.45); border:none; color:#fff; font-size:2.1rem; width:2.8rem; height:2.8rem; cursor:pointer; }
+.img-lightbox__zoom{ position:absolute; bottom:.6rem; right:.6rem; display:flex; gap:.25rem; }
+.img-lightbox__zoom button{ background:rgba(0,0,0,.55); border:none; color:#fff; padding:.2rem .45rem; cursor:pointer; font-size:.85rem; }
+
+/* =========================
+   10) MISC
+   ========================= */
+.detail-media--empty .detail-media__main{
+  background:repeating-linear-gradient(45deg,#f1f4fb,#f1f4fb 10px,#e2e7f0 10px,#e2e7f0 20px);
+  color:rgba(0,0,0,.35); font-size:12px;
+}
+@media (prefers-reduced-motion:reduce){
+  .detail-media, .detail-info, .detail-spec, .detail-media__thumbs .thumb{ transition:none !important; }
+}
+
+@media (max-width: 560px){
+  .detail-media {margin-top: 20%;}
+}
+
+/* ===== ����: ������ + ������� ===== */
+.price-meta {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  color: #6b7280; /* muted */
+}
+
+.price-status {
+  opacity: 0.9;
+}
+
+.price-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+.price-pill--final {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.price-pill--provisional {
+  background: #f59e0b;
+  color: #111827;
+}
+
+.price-meta__extra {
+  font-size: 0.75rem;
+  opacity: 0.95;
+}
+
+/* =========================
+   11) VIDEO SECTION
+   ========================= */
+.detail-video {
+  margin-top: 8px;
+  background: var(--surface);
+  border: 1px solid rgba(13,55,172,.08);
+  border-radius: 14px;
+  padding: 8px 12px 10px;
+  box-shadow: 0 10px 24px rgba(4,27,73,.06);
+  display: grid;
+  gap: 6px;
+}
+
+.detail-video h2 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.detail-video__player {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  border: none;
+  display: block;
+  background: #000;
+  max-height: 420px;
+  box-shadow: 0 16px 32px rgba(0,0,0,.35);
+}
+
+/* ����� ������ ���������� �� ������� */
+@media (max-width: 720px) {
+  .detail-video {
+    margin-top: 10px;
+  }
+}
+  
+
+/* =========================================================
+   DETAIL PAGE � Modern Atlantic Drive override (paste last)
+   ========================================================= */
+
+/* 0) FIX: ����� // ��������� � CSS (������� ���� /* ... */
+
+/* 1) Scoped theme ���� �� detail page (�� ���� ����������) */
+.detail-page{
+  --detail-radius-lg: 14px;
+  --detail-radius-md: 12px;
+  --detail-radius-sm: 10px;
+
+  /* dark glass */
+  --glass-bg: rgba(6, 29, 75, .55);
+  --glass-border: rgba(255,255,255,.10);
+  --shadow: 0 18px 40px rgba(0,0,0,.30);
+
+  --surface: rgba(2, 8, 20, .35);
+  --surface-soft: rgba(255,255,255,.04);
+
+  /* text */
+  --ink: #eaf1ff;
+  --ink-soft: rgba(234,241,255,.82);
+  --muted: rgba(234,241,255,.62);
+
+  /* accent (���� �����-����� �����) */
+  --brand-700: #1f5eff;
+  --brand-600: #2a67ff;
+  --brand-500: #4a7eff;
+  --brand-300: rgba(31,94,255,.35);
+  --brand-100: rgba(31,94,255,.10);
+
+  /* numbers */
+  --number: #ffffff;
+  --number-glow: 0 10px 22px rgba(31,94,255,.18);
+
+  /* pills -> ��-����� ������� */
+  --pill-bg: rgba(255,255,255,.06);
+  --pill-bd: rgba(255,255,255,.12);
+
+  --ring: 0 0 0 3px rgba(31,94,255,.28);
+}
+
+/* 2) ��� ����� (�����) � ��-����, ��-����� ������� */
+.detail-media{
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  box-shadow: var(--shadow) !important;
+    -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.detail-media__main{
+  background: rgba(0,0,0,.22) !important;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* thumbnails � ��-������� hover, ��� ������� */
+.detail-media__thumbs .thumb{
+  background: rgba(0,0,0,.18) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 10px !important;
+}
+.detail-media__thumbs .thumb:is(:hover,:focus-visible){
+  border-color: rgba(31,94,255,.55) !important;
+  box-shadow: 0 0 0 2px rgba(31,94,255,.18) !important;
+  transform: translateY(-1px);
+}
+.detail-media__thumbs .thumb.is-active{
+  border-color: rgba(31,94,255,.85) !important;
+  box-shadow: 0 0 0 2px rgba(31,94,255,.28) !important;
+}
+
+/* 3) ����� ����� */
+.detail-info{
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  box-shadow: var(--shadow) !important;
+    -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Header � ����� �� ����� ��� + ���� underline ����� */
+.detail-header{
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: var(--detail-radius-md) !important;
+  padding: 12px 14px !important;
+  position: relative;
+}
+.detail-header::after{
+  content:"";
+  position:absolute;
+  left:14px; right:14px; bottom:-1px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(31,94,255,.55), rgba(255,255,255,0));
+}
+.detail-header h1{
+  color: var(--ink) !important;
+  text-shadow: none !important;
+  letter-spacing: -.02em;
+}
+
+/* 4) Price block � ��-�������, ��� ���� ����� */
+.detail-price-block{
+  background: rgba(2,8,20,.30) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.28) !important;
+  border-radius: var(--detail-radius-md) !important;
+}
+
+/* label + price */
+.detail-price-block .label{
+  color: rgba(234,241,255,.58) !important;
+}
+.detail-price-block .price{
+  color: var(--number) !important;
+  text-shadow: var(--number-glow) !important;
+}
+.detail-price-block #carPriceNote{
+  color: rgba(31,94,255,.65) !important;
+}
+
+/* views pill � �� ������ -> �������� badge */
+.views-pill{
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 10px !important;          /* ������ 999px */
+  box-shadow: none !important;
+  color: var(--ink-soft) !important;
+  height: 40px;
+  justify-content: center;
+}
+
+/* phone button � clean gradient, ��� ����� ����������� ������ */
+.detail-price-block .btn{
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, rgba(31,94,255,.95), rgba(29,79,255,.80)) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 14px 30px rgba(31,94,255,.22), 0 10px 26px rgba(0,0,0,.25) !important;
+}
+.detail-price-block .btn:hover{
+  filter: brightness(1.06);
+  box-shadow: 0 16px 34px rgba(31,94,255,.26), 0 12px 30px rgba(0,0,0,.28) !important;
+}
+.detail-price-block .btn:focus-visible{ outline:none; box-shadow: var(--ring) !important; }
+
+/* 5) Specs � ��-������, ��-����� */
+.detail-spec,
+.detail-info .detail-spec{
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.detail-spec__lbl{
+  color: rgba(234,241,255,.55) !important;
+}
+.detail-spec__val{
+  color: rgba(234,241,255,.92) !important;
+}
+
+/* 6) Description � ���� �� ������ */
+.detail-extra{
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: var(--detail-radius-md) !important;
+  padding: 12px 14px !important;
+}
+.detail-extra h2{ color: rgba(234,241,255,.92) !important; }
+.detail-extra p{ color: rgba(234,241,255,.78) !important; }
+
+/* 7) Contact � � ����� ���� */
+.contact-card{
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: none !important;
+}
+.contact-card h2{ color: rgba(234,241,255,.92) !important; }
+.contact-card p{ color: rgba(234,241,255,.70) !important; }
+.contact-card a{ color: rgba(31,94,255,.95) !important; }
+
+/* 8) Video card � match */
+.detail-video{
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: none !important;
+}
+.detail-video h2{ color: rgba(234,241,255,.92) !important; }
+/* FIX: main photo �� �� ������ �� ������� (mobile/iOS safe) */
+.detail-media{
+  overflow: hidden; /* ������ ������ ����� � ������ */
+}
+
+.detail-media__main{
+  position: relative;
+  overflow: hidden;           /* ���� �� �������� */
+  border-radius: var(--detail-radius-md);
+  isolation: isolate;         /* ����������� ����� � ����� �������� */
+}
+
+.detail-media__main img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* iOS/Safari ������������ ���� �� border-radius clipping */
+@supports (-webkit-touch-callout: none) {
+  .detail-media__main{
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+  }
+}
+
+/* === MOBILE/REAL DEVICE SAFE MAIN PHOTO === */
+.detail-media__main{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--detail-radius-md);
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.08);
+
+  /* ������ ������������ �� aspect-ratio/grid */
+  aspect-ratio: auto !important;
+  display: block !important;
+  min-height: 0 !important;
+}
+
+/* 16:9 ratio box */
+.detail-media__main::before{
+  content:"";
+  display:block;
+  padding-top: 56.25%; /* 9/16 */
+}
+
+.detail-media__main img{
+  position:absolute;
+  inset:0;
+  width:100% !important;
+  height:100% !important;
+  object-fit: cover;
+  display:block;
+}
+.detail-actions{
+  display:flex;
+  gap:10px;
+  align-items:stretch;
+  flex-wrap:wrap;
+}
+
+.detail-actions .btn{
+  flex: 1 1 220px;
+}
+
+#btnShare{
+  flex: 0 0 auto;
+  min-width: 140px;
+}
+/* ===== FIX: title overflow on phone ===== */
+.detail-header,
+.detail-header h1,
+#carTitle {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.detail-header h1,
+#carTitle {
+  display: block;
+  width: 100%;
+  line-height: 1.12;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+#carTitle .title__text {
+  display: inline;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+#carTitle .title__flag {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  width: 26px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 768px) {
+  .detail-header {
+    padding: 12px;
+  }
+
+  .detail-header h1,
+  #carTitle {
+    font-size: clamp(17px, 6vw, 24px) !important;
+    line-height: 1.15;
+  }
+
+  #carTitle .title__flag {
+    width: 22px;
+    margin-left: 6px;
+  }
+}

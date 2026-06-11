@@ -1,0 +1,271 @@
+﻿/* dostavka-avtomobilPhone.css � ������� layout �� ���������� "�������� ���������" */
+/* NOTE: nav/cta �� �� ����� � ����� �� styles */
+
+@media (max-width: 768px){
+
+  /* =====================
+     ���� ������� ��������� (���� �� page content)
+     ===================== */
+
+  .wrap{ padding-inline: 16px; }
+
+  .ad-body{
+    background-color: #020617; /* ����� ��� ���� ��������� */
+  }
+
+  /* =====================
+     HERO � �����/����� (��� �� ������ ������ �� styles)
+     ===================== */
+
+  .da-hero{
+    min-height: 430px;
+    background-position: center right;
+  }
+
+  /* ����� ��-������ scrim �� ������� �� �������� */
+  .da-hero::before{
+    background: linear-gradient(
+      to right,
+      rgba(3, 5, 9, 0.97) 0%,
+      rgba(8, 16, 35, 0.94) 38%,
+      rgba(15, 23, 42, 0.88) 62%,
+      rgba(15, 23, 42, 0.72) 82%,
+      rgba(15, 23, 42, 0.18) 100%
+    ) !important;
+  }
+
+.da-hero-inner {
+        padding-block: 51px 0px;
+        align-items: flex-end;
+    }
+
+  .da-hero-copy{
+    max-width: 100%;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .da-hero-title{
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  .da-hero-lead{
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgba(226, 232, 240, 0.78); /* ��-������ */
+  }
+
+  .da-hero-actions{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .da-hero-btn,
+  .da-hero-link{
+    width: 60%;
+    justify-content: center;
+  }
+
+  /* ��������� � ������ � �� �� � ����� glass ��� */
+  .da-hero-list{
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .da-hero-list li{
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(233,241,255,.86);
+    box-shadow: 0 12px 26px rgba(0,0,0,.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* =====================
+     MAIN WRAP + SECTION HEADERS
+     ===================== */
+
+  .da-main{
+    padding-top: 18px;
+    padding-bottom: 40px;
+
+    /* �����: �� �� ������ ���� �� ������� ���� */
+    background: transparent;
+    color: rgba(233,241,255,.92);
+  }
+
+  .da-section-head{
+    margin: 0 0 20px;
+    text-align: left;
+  }
+
+  .da-steps-head{ margin-top: 18px; }
+
+  .da-kicker{
+    font-size: 11px;
+    color: rgba(115,195,255,.92);
+  }
+
+  .da-section-head h2{
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+
+  .da-section-head p{
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(233,241,255,.72);
+  }
+
+  /* =====================
+     1) ����� � ����� + 1 ������ (glass)
+     ===================== */
+
+  .da-intro{ margin-top: -10px; }
+
+  .da-intro-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .da-intro-copy{
+    gap: 10px;
+
+    /* ��� base CSS ���� � glass � ���������� ���� �� ������� */
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 14px 34px rgba(0,0,0,.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .da-intro-title{
+    font-size: 22px;
+    line-height: 1.25;
+    color: #ffffff;
+  }
+
+  .da-intro-lead{
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(233,241,255,.72);
+  }
+
+  .da-intro-list{
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(233,241,255,.80);
+  }
+
+  /* ����������� �� �������� � ���� ���� ������ �� ������� */
+  .da-intro-media{
+    display: block !important;
+    width: 100%;
+  }
+
+  .da-intro-img{
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 18px 40px rgba(0,0,0,.30);
+
+    border: 1px solid rgba(255,255,255,.12);
+    transform: none;
+  }
+
+  .da-intro-img--main{
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+  }
+
+  /* �������� �������� � ����� ����� ������ */
+  .da-intro-media-col,
+  .da-intro-img--side1,
+  .da-intro-img--side2{
+    display: none !important;
+  }
+
+  /* =====================
+     2) ������ � ������������ ����� (dark + readable)
+     ===================== */
+
+
+  .da-steps-grid{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin-top: 14px;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    margin-inline: -16px;
+    padding-inline: 16px;
+    padding-bottom: 6px;
+
+    scroll-snap-type: x mandatory;
+  }
+
+  .da-step-card{
+    flex: 0 0 82%;
+    max-width: 82%;
+    min-height: 280px;
+    border-radius: 20px;
+    scroll-snap-align: start;
+
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 22px 50px rgba(0,0,0,.28);
+  }
+
+  /* overlay �������� � ����� ��-������ �� ������� */
+  .da-step-card::before{
+    background: linear-gradient(
+      to top,
+      rgba(2, 6, 23, 0.94) 0%,
+      rgba(2, 6, 23, 0.84) 34%,
+      rgba(2, 6, 23, 0.36) 62%,
+      transparent 84%
+    ) !important;
+  }
+
+  .da-step-number{
+    top: 14px;
+    left: 16px;
+    font-size: 24px;
+    color: rgba(233,241,255,.95);
+  }
+
+  .da-step-overlay{
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+  }
+
+  .da-step-overlay h3{
+    font-size: 15px;
+    color: #ffffff;
+  }
+
+  .da-step-overlay p{
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(233,241,255,.78);
+  }
+
+  /* =====================
+     Footer � �� ����� ������� ��� (��� � global)
+     ��� ������, ���� � �� �� ������� � Atlantic Drive.
+     ===================== */
+
+}
+

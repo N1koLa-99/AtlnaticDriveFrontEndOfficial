@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<html lang="bg" translate="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Stop browser/Google translate prompts -->
+  <meta name="google" content="notranslate" />
+  <meta name="googlebot" content="notranslate" />
+  <meta http-equiv="content-language" content="bg" />
+
+  <!-- Default (JS ще го презапише с реалната кола) -->
+  <title id="pageTitle">Обява автомобил | Atlantic Drive</title>
+  <meta id="metaDescription" name="description" content="Обява за автомобил от САЩ/Канада с детайли, снимки, характеристики и цена. Консултация и съдействие за внос под ключ от Atlantic Drive." />
+
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+  <!-- Canonical (JS ще го сетне към текущия URL) -->
+  <link rel="canonical" id="canonicalLink" href="https://atlanticdrive.bg/detail.html" />
+
+  <!-- Open Graph (social) -->
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" id="ogTitle" content="Обява автомобил | Atlantic Drive" />
+  <meta property="og:description" id="ogDesc" content="Снимки, спецификации и цена. Консултация за внос под ключ." />
+  <meta property="og:url" id="ogUrl" content="https://atlanticdrive.bg/detail.html" />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:secure_url" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twTitle" content="Обява автомобил | Atlantic Drive" />
+  <meta name="twitter:description" id="twDesc" content="Снимки, спецификации и цена. Консултация за внос под ключ." />
+  <meta name="twitter:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0b0f14" />
+
+
+  <!-- Performance: Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/catalogStyles.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/detail.css?v=20260502-1224" />
+
+  <meta name="theme-color" content="#0b0f14" />
+
+  <!-- Base schema (после JS може да добави Vehicle/Offer schema) -->
+  <script type="application/ld+json" id="baseJsonLd">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Atlantic Drive",
+        "url": "https://atlanticdrive.bg/",
+        "logo": "https://atlanticdrive.bg/Images/LogoNeon.png",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61577808961262",
+          "https://www.instagram.com/atlanticdrive.bg/"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Обява автомобил | Atlantic Drive",
+        "url": "https://atlanticdrive.bg/detail.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Canonical helper (без да ти пипам detail.js) -->
+  <script>
+    (function () {
+      var u = (location && location.href) ? location.href.split('#')[0] : '';
+      var c = document.getElementById('canonicalLink');
+      var og = document.getElementById('ogUrl');
+      if (c && u) c.href = u;
+      if (og && u) og.content = u;
+    })();
+  </script>
+</head>
+
+<body>
+<nav class="nav" role="navigation" aria-label="Главна навигация">
+  <div class="nav-inner">
+    <!-- Хамбургер бутон (вижда се само на телефон) -->
+    <button class="nav-toggle" id="navToggle" aria-label="Отвори меню" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- BRAND + PHONE (NEW STRUCTURE) -->
+    <div class="brand">
+      <!-- Линк към началото (лого + име + флагове) -->
+      <a class="brand-left" href="index.html#top">
+        <div class="brand__logo brand__logo--img" aria-hidden="true">
+          <img src="Images/LogoNeon.png" alt="Atlantic Drive лого">
+        </div>
+
+        <div class="brand-stack">
+          <div class="brand__name">ATLANTIC&nbsp;DRIVE</div>
+
+          <!-- Флагове ВЕЧЕ СА ПОД ИМЕТО -->
+          <div class="brand-flags" aria-label="Държави">
+            <img src="Images/USAFlag.webp" alt="САЩ" class="brand-flag">
+            <img src="Images/canadaFlag.png" alt="Канада" class="brand-flag">
+            <img src="Images/Korea.webp" alt="Южна Корея" class="brand-flag">
+            <img src="Images/UAE.webp" alt="ОАЕ" class="brand-flag">
+          </div>
+        </div>
+      </a>
+
+      <div class="brand-phones" aria-label="Телефони за връзка">
+        <a class="brand-phone" href="tel:+359878119140" aria-label="Обади се на +359 878 119 140">
+          +359 878 119 140
+        </a>
+        <a class="brand-phone" href="tel:+359878949922" aria-label="Обади се на +359 878 949 922">
+          +359 878 949 922
+        </a>
+      </div>
+    </div>
+
+    <div class="menu" id="mobileMenu">
+      <a href="index.html">Начало</a>
+      <a href="vnos-po-porachka.html">Внос</a>
+      <a href="dostavka-avtomobil.html">Доставка</a>
+      <a href="bezmiten-vnos.html">Безмитен внос</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="#faq">Въпроси</a>
+    </div>
+
+    <a class="cta" href="mailto:office@atlanticdrive.bg">НАПРАВИ ЗАПИТВАНЕ</a>
+  </div>
+</nav>
+
+<div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <!-- DETAIL -->
+  <main class="wrap detail-page" aria-live="polite">
+    <!-- ЛЯВО: снимки -->
+    <section class="detail-media" aria-label="Снимки на автомобила">
+      <div class="detail-media__main">
+        <img id="carMainImg" src="Images/placeholder-car.png" alt="Снимка на автомобила" loading="lazy">
+      </div>
+      <div class="detail-media__thumbs" id="carThumbs"></div>
+    </section>
+
+    <!-- ДЯСНО: инфо -->
+    <section class="detail-info" id="detailInfo">
+      <header class="detail-header">
+        <p class="muted small" id="carStock">#—</p>
+        <h1 id="carTitle">Зареждане…</h1>
+        <p class="muted" id="carSubtitle"></p>
+      </header>
+
+      <div class="detail-price-block">
+        <div>
+          <div class="label">Цена</div>
+          <div class="price" id="carPrice">—</div>
+          <div class="muted small" id="carPriceNote" style="display:none"></div>
+        </div>
+
+        <div class="views-pill" id="viewStats" aria-live="polite" title="Преглеждания">
+          <span class="views-pill__eye" aria-hidden="true">👁</span>
+          <span id="viewsTotal">—</span>&nbsp;преглеждания
+        </div>
+
+        <div class="detail-actions">
+  <a class="btn" id="btnConsult">КОНСУЛТАЦИЯ ЗА КОЛАТА</a>
+  <button class="btn ghost" id="btnShare" type="button">Сподели</button>
+</div>
+
+      </div>
+
+      <div class="detail-specs" id="specsBox">
+        <div class="detail-spec" data-key="year">
+          <span class="detail-spec__lbl">Година</span>
+          <span class="detail-spec__val" id="specYear">—</span>
+        </div>
+        <div class="detail-spec" data-key="mileage_km">
+          <span class="detail-spec__lbl">Пробег</span>
+          <span class="detail-spec__val" id="specKm">—</span>
+        </div>
+        <div class="detail-spec" data-key="engine">
+          <span class="detail-spec__lbl">Двигател</span>
+          <span class="detail-spec__val" id="specEngine">—</span>
+        </div>
+        <div class="detail-spec" data-key="fuel">
+          <span class="detail-spec__lbl">Гориво</span>
+          <span class="detail-spec__val" id="specFuel">—</span>
+        </div>
+        <div class="detail-spec" data-key="gearbox">
+          <span class="detail-spec__lbl">Скорости</span>
+          <span class="detail-spec__val" id="specGearbox">—</span>
+        </div>
+        <div class="detail-spec" data-key="drive">
+          <span class="detail-spec__lbl">Задвижване</span>
+          <span class="detail-spec__val" id="specDrive">—</span>
+        </div>
+        <div class="detail-spec" data-key="body_type">
+          <span class="detail-spec__lbl">Купе</span>
+          <span class="detail-spec__val" id="specBody">—</span>
+        </div>
+        <div class="detail-spec" data-key="power_hp">
+          <span class="detail-spec__lbl">Мощност</span>
+          <span class="detail-spec__val" id="specPower">—</span>
+        </div>
+        <div class="detail-spec" data-key="color">
+          <span class="detail-spec__lbl">Цвят</span>
+          <span class="detail-spec__val" id="specColor">—</span>
+        </div>
+        <div class="detail-spec" data-key="dealer_name">
+          <span class="detail-spec__lbl">Търговец</span>
+          <span class="detail-spec__val" id="specDealer">—</span>
+        </div>
+        <div class="detail-spec" data-key="published_at">
+          <span class="detail-spec__lbl">Публикувано</span>
+          <span class="detail-spec__val" id="specPublished">—</span>
+        </div>
+      </div>
+
+      <div class="detail-extra" id="carDescription">
+        <h2>Описание</h2>
+        <p class="muted">Зареждане…</p>
+      </div>
+
+      <div class="detail-tags" id="carTags"></div>
+
+      <div class="contact-card" id="contactCard" style="display:none">
+        <h2>Контакт</h2>
+        <p id="contactName"></p>
+        <p><a id="contactPhone" href="#"></a></p>
+        <p><a id="contactEmail" href="#"></a></p>
+      </div>
+
+      <section class="detail-video" id="detailVideo" style="display:none">
+        <h2>Видео</h2>
+        <div class="detail-video__frame" id="detailVideoFrame"></div>
+      </section>
+    </section>
+
+    <div class="img-lightbox" id="imgLightbox" aria-hidden="true">
+      <div class="img-lightbox__backdrop" id="imgLightboxBackdrop"></div>
+      <div class="img-lightbox__body">
+        <button class="img-lightbox__close" id="imgLightboxClose" aria-label="Затвори">×</button>
+        <img id="imgLightboxImg" src="" alt="Преглед на снимка">
+        <div class="img-lightbox__controls">
+          <button type="button" class="img-lightbox__btn" id="imgLightboxPrev" aria-label="Предишна">‹</button>
+          <button type="button" class="img-lightbox__btn" id="imgLightboxNext" aria-label="Следваща">›</button>
+        </div>
+        <div class="img-lightbox__zoom">
+          <button type="button" id="imgZoomIn">+</button>
+          <button type="button" id="imgZoomOut">−</button>
+          <button type="button" id="imgZoomReset">100%</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <a class="fab-contact" href="mailto:office@atlanticdrive.bg" aria-label="Бърза връзка с оператор">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.15 9.81a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 2.06-.99h3A2 2 0 0 1 7 1.52c.2 1.52.63 2.97 1.26 4.32a2 2 0 0 1-.45 2.18L6.2 9.63a16 16 0 0 0 8.17 8.17l1.61-1.61a2 2 0 0 1 2.18-.45c1.35.63 2.8 1.06 4.32 1.26A2 2 0 0 1 22 16.92z" fill="currentColor"/>
+    </svg>
+    <span class="fab-contact__lbl">Оператор</span>
+  </a>
+
+  <div class="cb-backdrop" id="cbBackdrop" hidden></div>
+  <aside class="cb-drawer cb-drawer--center" id="cbDrawer" aria-hidden="true" aria-labelledby="cbTitle" role="dialog">
+    <header class="cb-head">
+      <h3 id="cbTitle">Бърза връзка</h3>
+      <button class="cb-close" id="cbClose" aria-label="Затвори">&times;</button>
+    </header>
+
+    <form class="cb-form cb-form--segmented" id="cbForm" novalidate>
+      <section class="cb-section">
+        <header class="cb-section-head">
+          <span class="cb-section-step">1</span>
+          <div>
+            <div class="cb-section-title">Контакти</div>
+            <!-- FIX: кирилска "и" в class -->
+            <div class="cb-section-hint">Къде и как да ви потърсим</div>
+          </div>
+        </header>
+
+        <input type="hidden" id="cbOffice" value="AtlanticDrive - Горубляне" />
+
+        <div class="cb-grid cb-grid--2">
+          <label class="cb-field">
+            <span class="cb-lbl">Име и фамилия *</span>
+            <input type="text" id="cbName" required placeholder="Иван Иванов" autocomplete="name" />
+            <small class="cb-err" aria-live="polite"></small>
+          </label>
+
+          <label class="cb-field">
+            <span class="cb-lbl">Телефон *</span>
+            <input type="tel" id="cbPhone" required placeholder="+359 8X XXX XXXX" autocomplete="tel" />
+            <small class="cb-err" aria-live="polite"></small>
+          </label>
+        </div>
+
+        <div class="cb-grid cb-grid--1">
+          <label class="cb-field">
+            <span class="cb-lbl">Имейл по желание</span>
+            <input type="email" id="cbEmail" placeholder="client@email.com" autocomplete="email" />
+            <small class="cb-err" aria-live="polite"></small>
+          </label>
+        </div>
+      </section>
+
+      <section class="cb-section">
+        <header class="cb-section-head">
+          <span class="cb-section-step">2</span>
+          <div>
+            <div class="cb-section-title">Колата, която търсите</div>
+            <div class="cb-section-hint">Марка, модел, година и бюджет</div>
+          </div>
+        </header>
+
+        <div class="cb-grid cb-grid--2">
+          <label class="cb-field">
+            <span class="cb-lbl">Марка</span>
+            <input type="text" id="cbBrand" placeholder="BMW / Audi / ..." />
+          </label>
+
+          <label class="cb-field">
+            <span class="cb-lbl">Модел</span>
+            <input type="text" id="cbModel" placeholder="530i / Q5 / ..." />
+          </label>
+        </div>
+
+   <div class="cb-grid cb-grid--2">
+          <label class="cb-field">
+            <span class="cb-lbl">Година от</span>
+            <input type="number" id="cbYear" min="1990" max="2100" placeholder="2016" />
+          </label>
+
+          <label class="cb-field">
+            <span class="cb-lbl">Бюджет (макс.) в евро </span>
+            <input type="number" id="cbBudget" placeholder="35 000 €" />
+          </label>
+        </div>
+
+        <div class="cb-grid cb-grid--1">
+          <label class="cb-field">
+            <span class="cb-lbl">Кратко описание</span>
+            <textarea id="cbDesc" rows="4" placeholder="Екстри..."></textarea>
+          </label>
+        </div>
+      </section>
+
+      <footer class="cb-footer">
+        <div class="cb-actions">
+          <button type="button" class="btn ghost" id="cbCancel">Откажи</button>
+          <button type="submit" class="btn">Изпрати заявка</button>
+        </div>
+        <p class="cb-note muted">
+          Ще ви върнем обаждане възможно най-скоро.<br>
+          Полетата със * са задължителни.
+        </p>
+      </footer>
+    </form>
+  </aside>
+
+  <div class="cb-toast" id="cbToast" role="status" aria-live="polite" hidden>
+    Заявката е изпратена. Благодарим!
+  </div>
+<script>
+  window.SHARE_BASE = "https://share.atlanticdrive.bg/share";
+</script>
+
+<script src="./js/api.js?v=20260502-1224"></script>
+<script src="./js/detail.js?v=20260502-1224"></script>
+<script src="./js/index.js?v=20260502-1224"></script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navToggle = document.getElementById('navToggle');
+      const menu      = document.getElementById('mobileMenu');
+      const backdrop  = document.getElementById('navBackdrop');
+
+      if (navToggle && menu) {
+        function openMenu() {
+          menu.classList.add('is-open');
+          navToggle.classList.add('is-active');
+          navToggle.setAttribute('aria-expanded', 'true');
+
+          if (backdrop) {
+            backdrop.hidden = false;
+            backdrop.classList.add('is-visible');
+          }
+        }
+
+        function closeMenu() {
+          menu.classList.remove('is-open');
+          navToggle.classList.remove('is-active');
+          navToggle.setAttribute('aria-expanded', 'false');
+
+          if (backdrop) {
+            backdrop.classList.remove('is-visible');
+            backdrop.hidden = true;
+          }
+        }
+
+        function toggleMenu() {
+          if (menu.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        navToggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          toggleMenu();
+        });
+
+        if (backdrop) {
+          backdrop.addEventListener('click', function () {
+            closeMenu();
+          });
+        }
+
+        menu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            closeMenu();
+          });
+        });
+
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 768) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeMenu();
+          }
+        });
+      }
+    });
+  </script>
+  <style>
+  /* ===== Mobile viewport flicker FIX (detail page) ===== */
+  :root{
+    --vh: 1vh;
+    --svh: 1vh; /* stable */
+    --dvh: 1vh; /* dynamic */
+  }
+  @supports (height: 100svh){ :root{ --svh: 1svh; } }
+  @supports (height: 100dvh){ :root{ --dvh: 1dvh; } }
+
+  @media (max-width: 980px){
+
+    /* Backdrops / drawer-и */
+    #navBackdrop, .nav-backdrop,
+    #cbBackdrop,  .cb-backdrop,
+    #cbDrawer,    .cb-drawer{
+      height: calc(var(--dvh) * 100) !important;
+    }
+
+    /* ==== LIGHTBOX: махаме vh и минаваме на stable viewport ==== */
+    .img-lightbox__body{
+      max-height: calc(var(--svh) * 90) !important; /* вместо 90vh */
+    }
+    .img-lightbox__body img{
+      max-height: calc(var(--svh) * 88) !important; /* вместо 88vh */
+    }
+
+    /* леко стабилизиране на paint-а */
+    .img-lightbox,
+    .img-lightbox__body{
+      will-change: transform, opacity !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+  }
+</style>
+
+<script>
+  /* Fallback за браузери без svh/dvh (iOS по-стари / някои Android webview) */
+  (function () {
+    var root = document.documentElement;
+    var hasSVH = window.CSS && CSS.supports && CSS.supports('height: 100svh');
+    var hasDVH = window.CSS && CSS.supports && CSS.supports('height: 100dvh');
+    if (hasSVH && hasDVH) return;
+
+    function setOnce(){
+      var vh = window.innerHeight * 0.01;
+      root.style.setProperty('--vh', vh + 'px');
+      root.style.setProperty('--svh', 'var(--vh)');
+      root.style.setProperty('--dvh', 'var(--vh)');
+    }
+
+    setOnce();
+    window.addEventListener('orientationchange', setOnce, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

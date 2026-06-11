@@ -1,0 +1,443 @@
+﻿/* my-clientsPhone.css */
+/* ������� layout �� "����� �������" � override �� my-clients.css ��� 768px */
+
+@media (max-width: 768px) {
+
+  /* ========= ���� / BODY / MAIN ========= */
+
+body.ad-body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  background: var(--bg-page, #e5e7eb);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+
+  .glass-panel {
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm, 0 10px 25px rgba(15, 23, 42, 0.08));
+    background: var(--panel-solid, #ffffff);
+  }
+
+  .muted {
+    font-size: 0.8rem;
+  }
+
+  /* ========= HEADER ========= */
+
+
+  /* �������� ������ "�����" ���� �� ������� */
+  #btnLogout {
+    display: none;
+  }
+
+  .ad-header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+      #btnLogout {
+        position: absolute !important;
+        top: 8px !important;
+        right: 10px !important;
+        padding: 0.3rem 0.7rem !important;
+        min-width: auto !important;
+        border-radius: 999px !important;
+        background: #fee2e2 !important;
+        border-color: #fecaca !important;
+        color: #b91c1c !important;
+        box-shadow: 0 4px 10px rgba(239, 68, 68, 0.5) !important;
+        font-size: 0.78rem !important;
+        line-height: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 50 !important;
+        display: none !important;
+    }
+  
+
+  .ad-header-actions .btn-primary,
+  .ad-header-actions .btn-secondary {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    border-radius: 999px;
+  }
+
+  .ad-header-actions .btn-accent {
+    display: none;
+  }
+
+  /* ========= ����� ����� / �������� ========= */
+
+  .leads-header-panel {
+    margin-top: 4px;
+  }
+
+  .leads-header-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .leads-title {
+    font-size: 1.25rem;
+    margin: 0 0 2px;
+  }
+
+  .leads-subtitle {
+    font-size: 0.82rem;
+    margin: 0;
+  }
+
+  .leads-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin-top: 4px;
+  }
+
+  .leads-legend-item {
+    font-size: 0.78rem;
+  }
+
+  .leads-status-text {
+    margin-top: 8px;
+    font-size: 0.8rem;
+  }
+
+  /* ========= ����� (������ �������) ========= */
+
+  .leads-table-panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .leads-table-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .leads-table-header h2 {
+    font-size: 1rem;
+    margin: 0 0 2px;
+  }
+
+  .leads-table-hint {
+    font-size: 0.8rem;
+    margin: 0 0 6px;
+    text-align: left;
+    max-width: none;
+  }
+
+  .table-responsive {
+    overflow: visible;
+  }
+
+  /* ������ � ����� */
+  .clients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  /* ������� ����� ��-��������� */
+  .client-card {
+    padding: 10px 10px 9px;
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  }
+
+  .client-card:hover {
+    transform: none;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  }
+
+  .client-card__header {
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: flex-start;
+  }
+
+  .client-card__index {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .client-card__meta {
+    margin-left: 0;
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .client-card__date {
+    font-size: 11px;
+  }
+
+  .client-card__toggle {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+
+  .client-card__body {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  .client-card__notes {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  /* ��� + �������� */
+  .client-card .lead-client__name {
+    font-size: 0.98rem;
+  }
+
+  .client-card .lead-client__contacts {
+    font-size: 0.8rem;
+  }
+
+  /* ������ � ������� */
+  .lead-notes-list.lead-notes-list--compact {
+    max-height: 180px;
+    padding-right: 2px;
+    gap: 6px;
+  }
+
+  .lead-note-item {
+    padding: 5px 7px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+
+  .lead-note-header {
+    font-size: 0.72rem;
+  }
+
+  .lead-note-text {
+    font-size: 0.8rem;
+  }
+
+  .btn-note-delete {
+    font-size: 0.72rem;
+  }
+
+  /* ���� �� ���� ������� */
+  .client-note-box {
+    border-radius: 12px;
+    padding: 7px 8px 8px;
+  }
+
+  .client-note-input {
+    min-height: 60px;
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+
+  .client-note-actions {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .btn-note-save,
+  .btn-client-delete {
+    font-size: 0.78rem;
+    padding: 5px 10px;
+  }
+
+  .client-note-msg {
+    font-size: 0.76rem;
+  }
+
+  /* ========= ����� "��� ������" ========= */
+
+  .ad-modal {
+    align-items: flex-end;
+    padding: 20px 10px 10px;
+  }
+
+  .ad-modal-content {
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 18px 18px 0 0;
+    padding: 14px 14px 16px;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .ad-modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+  }
+
+  .ad-modal-content .muted {
+    margin-bottom: 8px;
+  }
+
+  .field {
+    margin-bottom: 8px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 7px 9px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.9);
+    box-sizing: border-box;
+  }
+
+  .ad-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ad-modal-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 6px;
+  }
+
+  .ad-modal-actions .btn-primary,
+  .ad-modal-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 9px 10px;
+  }
+
+  #clientModalErr {
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+}
+
+/* ����� ������������ �������� �� ���-������� ������ */
+@media (max-width: 480px) {
+  .leads-title {
+    font-size: 1.1rem;
+  }
+
+  .client-card {
+    padding: 9px 9px 8px;
+  }
+
+  .lead-notes-list.lead-notes-list--compact {
+    max-height: 150px;
+  }
+}
+  .btn-primary{
+    display: block;
+  }
+  /* ������� layout �� "����� �����" / "����� �������" � override ��� 768px */
+@media (max-width: 768px) {
+
+  body.ad-body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    background: var(--bg-page, #e5e7eb);
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .glass-panel {
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm, 0 10px 25px rgba(15, 23, 42, 0.08));
+    background: var(--panel-solid, #ffffff);
+  }
+
+  .muted {
+    font-size: 0.8rem;
+  }
+
+  /* HEADER */
+
+  /* �������� ������ "�����" ���� �� ������� */
+  #btnLogout {
+    display: none;
+  }
+
+  .ad-header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  /* ������ ������� ������ � �� ���� ������, �� ������ */
+  .ad-header-actions .btn-primary,
+  .ad-header-actions .btn-secondary {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    display: inline-flex;
+  }
+
+  /* �������� ���� ��������� (��� � �������) */
+  .ad-header-actions .btn-accent {
+    display: none;
+  }
+
+  /* ... ���������� �� ������� ���� �� �������/������� ... */
+}
+
+/* ����� ������������ �������� �� ���-������� ������ */
+@media (max-width: 480px) {
+  .leads-title {
+    font-size: 1.1rem;
+  }
+
+  .client-card {
+    padding: 9px 9px 8px;
+  }
+
+  .lead-notes-list.lead-notes-list--compact {
+    max-height: 150px;
+  }
+}
+
+/* ���� �������, ����� ���������, �� ������ "���� �����" � ����� �� ������� */
+@media (max-width: 768px) {
+  #btnNew {
+    display: inline-flex !important;
+  }
+}
+

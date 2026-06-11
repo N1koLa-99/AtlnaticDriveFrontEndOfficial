@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Моите обяви | Atlantic Drive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Вътрешен панел за управление на обявите в Atlantic Drive." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" content="Моите обяви | Atlantic Drive" />
+  <meta property="og:description" content="Вътрешен панел за управление на обявите в Atlantic Drive." />
+  <meta property="og:url" content="https://atlanticdrive.bg/my-listings.html" />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:secure_url" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Моите обяви | Atlantic Drive" />
+  <meta name="twitter:description" content="Вътрешен панел за управление на обявите в Atlantic Drive." />
+  <meta name="twitter:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <link rel="stylesheet" href="./css/style.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-listings.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-listingsPhone.css?v=20260502-1224" />
+
+  <!-- NEW: secondary price (BGN) style -->
+  <style>
+    .price-sub {
+      opacity: .55;
+      font-weight: 500;
+      font-size: .85em;
+      margin-left: .5rem;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="ad-body">
+  <header class="ad-header">
+    <div class="ad-brand"><strong>Atlantic Drive</strong> – Моите обяви</div>
+    <div class="ad-header-actions">
+      <button class="btn-primary" id="btnNew">+ Нова обява</button>
+
+      <button class="btn-secondary" id="btnClients">Моите клиенти</button>
+
+      <button class="btn-secondary" id="btnAllListings" style="display:none;">
+        Всички обяви
+      </button>
+
+      <button class="btn-secondary" id="btnLeads" style="display:none;">
+        Запитвания
+      </button>
+
+      <button class="btn-accent" id="btnLogout">Изход</button>
+    </div>
+  </header>
+
+  <main class="ad-main">
+    <div class="ad-container ad-layout">
+      <div class="ad-left">
+        <div class="ad-page-title">
+          <h2 id="pageHeading">Моите обяви</h2>
+          <p id="status" class="ad-status-text">Зареждане...</p>
+        </div>
+
+        <section class="glass-panel cards-panel">
+          <div id="cardsGrid" class="cards-grid"></div>
+          <div id="noListings" class="ad-empty-state" style="display:none;">
+            Нямаш активни обяви. Натисни „Нова обява“, за да създадеш първата си обява.
+          </div>
+        </section>
+
+        <section id="listingFormBox" class="glass-panel ad-form-panel" style="display:none;">
+          <div class="ad-form-header">
+            <h3 id="formTitle">Нова обява</h3>
+            <p class="ad-form-sub" id="formSub">
+              Попълни задължителните полета и качи снимки.
+            </p>
+          </div>
+
+          <div class="error" id="formError"></div>
+          <div class="success" id="formOk"></div>
+
+          <ul class="ad-steps">
+            <li class="ad-step">
+              <div class="ad-step-head">
+                <div class="ad-step-num">1</div>
+                <div>
+                  <h4>Автомобил</h4>
+                  <p class="muted">Основни данни за марка, модел, година и характеристики.</p>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="makeId">Марка <span class="req">*</span></label>
+                  <select id="makeId">
+                    <option value="">-- избери --</option>
+                  </select>
+                  <div class="err">Избери марка.</div>
+                </div>
+
+                <div class="field">
+                  <label for="modelId">Модел <span class="req">*</span></label>
+                  <select id="modelId" disabled>
+                    <option value="">-- избери марка --</option>
+                  </select>
+                  <div class="err">Избери модел.</div>
+                </div>
+
+                <div class="field">
+                  <label for="year">Година <span class="req">*</span></label>
+                  <input id="year" type="number" value="2018" />
+                  <div class="err">Въведи година.</div>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="bodyTypeId">Каросерия</label>
+                  <select id="bodyTypeId">
+                    <option value="">--</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="fuelTypeId">Гориво</label>
+                  <select id="fuelTypeId">
+                    <option value="">--</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="transmissionId">Трансмисия</label>
+                  <select id="transmissionId">
+                    <option value="">--</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="engineCc">Кубици</label>
+                  <input id="engineCc" type="number" />
+                </div>
+                <div class="field">
+                  <label for="powerHp">К.с.</label>
+                  <input id="powerHp" type="number" />
+                </div>
+                <div class="field">
+                  <label for="mileageKm">Пробег (км)</label>
+                  <input id="mileageKm" type="number" />
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field" style="grid-column: span 6;">
+                  <label for="vin">VIN</label>
+                  <input id="vin" maxlength="17" placeholder="17 знака, без I/O/Q" />
+                  <div class="hint">Остави празно, ако още няма VIN.</div>
+                </div>
+                <div class="field" style="grid-column: span 6;">
+                  <label for="lotNumber">Lot №</label>
+                  <input id="lotNumber" placeholder="напр. COP-908776" />
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="originCountryCode">Произход</label>
+                  <select id="originCountryCode">
+                    <option value="">--</option>
+                    <option value="US">USA (US)</option>
+  <option value="CA">Canada (CA)</option>
+  <option value="AE">UAE (AE)</option>
+  <option value="KR">South Korea (KR)</option>
+                  </select>
+                  <div class="hint">САЩ или Канада според аукциона.</div>
+                </div>
+
+                <div class="field">
+                  <label>
+                    <input id="hasDamage" type="checkbox" />
+                    Със щета (ударен, наводнен и т.н.)
+                  </label>
+                  <div class="hint">Ако колата е без удар – остави празно.</div>
+                </div>
+              </div>
+            </li>
+
+            <li class="ad-step">
+              <div class="ad-step-head">
+                <div class="ad-step-num">2</div>
+                <div>
+                  <h4>Цена и статус</h4>
+                  <p class="muted">Финални или прогнозни цени и пояснителни бележки.</p>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="title">Заглавие <span class="req">*</span></label>
+                  <input id="title" placeholder="напр. 2018 BMW 320d xDrive" />
+                </div>
+
+                <!-- NEW: EUR input label + hint -->
+                <div class="field">
+                  <label for="price">Цена (EUR) <span class="req">*</span></label>
+                  <input id="price" type="number" step="0.01" placeholder="напр. 14900" inputmode="decimal" />
+                  <div class="hint">Въвеждаш в евро. Системата показва и ориентировъчно в лева.</div>
+                </div>
+
+                <div class="field">
+                  <label>
+                    <input id="priceIsFinal" type="checkbox" />
+                    Крайна цена
+                  </label>
+                  <div class="hint">Без отметка → прогнозна цена.</div>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field" style="grid-column: span 12;">
+                  <label for="priceNote">Бележка към цената</label>
+                  <textarea id="priceNote" rows="2" placeholder="напр. Очаквани транспорт/мито/рег."></textarea>
+                </div>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="auctionDate">Дата на търга</label>
+                  <input id="auctionDate" type="date" />
+                  <div class="hint">Ползва се при прогнозна цена.</div>
+                </div>
+                <div class="field">
+                  <label for="auctionTime">Час на търга</label>
+                  <input id="auctionTime" type="time" />
+                  <div class="hint">Местно време (EET).</div>
+                </div>
+              </div>
+            </li>
+
+            <li class="ad-step">
+              <div class="ad-step-head">
+                <div class="ad-step-num">3</div>
+                <div>
+                  <h4>Плюсове, описание и снимки</h4>
+                  <p class="muted">Отличителни предимства + детайлно описание и визуална презентация.</p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Отличителни плюсове</label>
+                <p class="hint">Избери най-важните за тази кола.</p>
+                <div id="listingFeaturesBox" class="feature-chips"></div>
+                <input type="hidden" id="featureIds" value="" />
+              </div>
+
+              <div class="field">
+                <label for="description">Описание</label>
+                <textarea id="description" rows="4" placeholder="Накратко за състоянието, екстрите, сервизната история..."></textarea>
+              </div>
+
+              <div class="ad-inline">
+                <div class="field">
+                  <label for="sourceUrl">Линк към аукцион / източник</label>
+                  <input id="sourceUrl" type="url" placeholder="https://www.copart.com/lot/..." />
+                  <div class="hint">Например Copart, IAAI, Mobile.de и др.</div>
+                </div>
+                <div class="field">
+                  <label for="videoUrl">Видео линк</label>
+                  <input id="videoUrl" type="url" placeholder="https://youtu.be/..." />
+                  <div class="hint">YouTube, Facebook, Google Drive и др.</div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Снимки</label>
+                <div class="uploader" id="photosUploader">
+                  <input id="photos" type="file" multiple accept="image/*" />
+                  <div class="uploader-cta">
+                    <strong>Качи снимки</strong>
+                    <span class="muted">
+                      Избери файлове или ги пусни с drag & drop. Първата снимка ще е корица.
+                    </span>
+                  </div>
+                </div>
+                <div id="photosPreview" class="photos-grid"></div>
+              </div>
+
+              <div class="ad-form-footer">
+                <div class="ad-form-actions">
+                  <button class="btn-primary" id="btnSave">Запази</button>
+                  <button class="btn-secondary" id="btnCancel">Отказ</button>
+                  <span id="saveSpinner" class="muted" style="display:none;">Запис...</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <input type="hidden" id="currentEditId" value="" />
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="listingModal" class="ad-modal" aria-hidden="true">
+    <div class="ad-modal-backdrop"></div>
+    <div class="ad-modal-dialog" role="dialog" aria-modal="true">
+      <button class="ad-modal-close" id="modalCloseBtn" type="button" aria-label="Затвори">&times;</button>
+
+      <section class="ad-detail" id="listingDetail" aria-live="polite">
+        <div class="ad-detail-empty" id="detailEmpty" style="display:none;">
+          <p>Няма данни за избраната обява.</p>
+        </div>
+
+        <div class="ad-detail-body" id="detailBody" style="display:none;">
+          <div class="ad-detail-media">
+            <div class="ad-detail-main-img">
+              <img id="detailMainImg" src="" alt="Снимка на автомобила" />
+            </div>
+            <div class="ad-detail-thumbs" id="detailThumbs"></div>
+          </div>
+
+          <header class="ad-detail-header">
+            <p class="ad-detail-stock" id="detailStock"></p>
+            <h1 class="ad-detail-title" id="detailTitle"></h1>
+            <p class="ad-detail-sub" id="detailSubtitle"></p>
+
+            <div id="detailFeatures" class="ad-detail-features" style="display:none;"></div>
+          </header>
+
+          <div class="ad-detail-price-block">
+            <div>
+              <div class="label">Цена</div>
+              <div class="price" id="detailPrice">—</div>
+              <div class="small muted" id="detailStatusNote"></div>
+              <div class="small meta" id="detailPriceMeta"></div>
+            </div>
+          </div>
+
+          <div id="detailLinks" class="ad-detail-links" style="display:none;"></div>
+
+          <div class="ad-detail-specs" id="detailSpecs"></div>
+          <div class="ad-detail-desc" id="detailDesc"></div>
+
+          <div class="ad-detail-contact" id="detailContactBox" style="display:none;">
+            <h3>Контакт</h3>
+            <p id="detailContactName"></p>
+            <p><a id="detailContactPhone" href="#"></a></p>
+            <p><a id="detailContactEmail" href="#"></a></p>
+          </div>
+
+          <div class="ad-modal-footer">
+            <span class="muted small" id="detailModalHint">
+              Можеш да редактираш или изтриеш обявата директно оттук.
+            </span>
+            <div class="ad-modal-footer-actions">
+              <button id="modalEditBtn" type="button" class="ad-action-btn btnEdit btn-warning">Редактирай</button>
+              <button id="modalDeleteBtn" type="button" class="ad-action-btn btnDel btn-danger">Изтрий</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./js/api.js?v=20260502-1224"></script>
+  <script src="./js/my-listings.js?v=20260502-1224"></script>
+</body>
+</html>

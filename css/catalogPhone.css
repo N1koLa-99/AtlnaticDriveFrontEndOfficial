@@ -1,0 +1,1154 @@
+﻿@charset "UTF-8";
+/* catalogPhone.css
+   Mobile / small-screen overrides
+   Зарежда се след catalogStyles.css и styles.css
+*/
+
+/* ====== до ~980px и touch устройства: един column layout + mobile sheets ====== */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  /* ====== DARK FILTER THEME (мобилен) ====== */
+  :root{
+    --m-panel-bg: rgba(10, 26, 64, .62);
+    --m-panel-bd: rgba(255,255,255,.10);
+    --m-panel-shadow: 0 18px 44px rgba(0,0,0,.35);
+
+    --m-field-bg: rgba(255,255,255,.08);
+    --m-field-bg-hover: rgba(255,255,255,.12);
+    --m-field-bd: rgba(255,255,255,.12);
+
+    --m-text: rgba(255,255,255,.92);
+    --m-muted: rgba(226, 232, 240, .72);
+
+    --m-ring: 0 0 0 3px rgba(31,94,255,.30);
+    --m-grad: linear-gradient(90deg, #1f5eff 0%, #4c8bff 100%);
+  }
+
+  /* целия layout е в една колона, без aside.facets */
+  .catalog {
+    margin: calc(76px + var(--safe-top)) auto 20px;
+    padding-inline: 12px;
+    max-width: 1040px;
+    display: block; /* вместо grid */
+  }
+
+  .facets { display: none !important; }
+
+  .catalog-main{
+    margin-top: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Header на каталога */
+  .catalog-head{
+    position: static;
+    top: auto;
+    z-index: auto;
+    margin-top: 8px;
+  }
+
+  /* ===== Header panel (dark glass) ===== */
+  .catalog-head .ch__right{
+    width: 100%;
+    margin-top: 0;
+    padding: 12px;
+    background: var(--m-panel-bg);
+    border: 1px solid var(--m-panel-bd);
+    border-radius: 18px;
+    box-shadow: var(--m-panel-shadow);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    display: block;
+  }
+
+  /* ===== Сортиране (glass field) ===== */
+  .catalog-head .field.ch__sort{
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px 10px;
+    border-radius: 16px;
+    background: var(--m-field-bg);
+    border: 1px solid var(--m-field-bd);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 0;
+  }
+
+  .catalog-head .field.ch__sort .lbl{
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--m-muted);
+    margin-bottom: 0;
+  }
+
+  .catalog-head .field.ch__sort .select-wrap{
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    position: relative;
+  }
+
+  .catalog-head .field.ch__sort select{
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    height: auto;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--m-text);
+    outline: none;
+  }
+
+  .catalog-head .field.ch__sort select:focus{
+    box-shadow: var(--m-ring);
+    border-radius: 10px;
+  }
+
+  /* махаме стрелката */
+  .catalog-head .field.ch__sort .select-wrap::after{ display: none; }
+
+  .ch__view{ display: none !important; }
+
+  /* Chipbar */
+  .chipbar{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .chipbar__active,
+  .chipbar__quick{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip{
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.10);
+    color: var(--m-text);
+    box-shadow: 0 10px 22px rgba(0,0,0,.18);
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.12s ease,
+      border-color .18s ease;
+  }
+
+  .chip:hover{
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.14);
+  }
+
+  .chip.chip--active{
+    background: var(--m-grad);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 16px 34px rgba(31,94,255,.35);
+  }
+
+  .chip.is-touched,
+  .chip:active{ transform: translateY(1px) scale(0.98); }
+
+  #activeChips .chip{
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sheet{ max-height: 70vh; }
+  .sheet__body{ padding-bottom: 80px; }
+
+  .sheet{
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease-out, opacity 0.22s ease-out;
+  }
+
+  .sheet .chip{
+    position: relative;
+    border-radius: 999px;
+    background: #f3f6ff;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+    color: #123c93;
+    border: 1px solid rgba(16,65,201,.14);
+  }
+
+  .sheet .chip.chip--active{
+    background: radial-gradient(circle at 30% 0, #8ec0ff 0, #1f5eff 45%, #1743c1 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 10px 26px rgba(23, 74, 201, 0.48);
+    transform: translateY(-1px);
+  }
+
+  .sheet .chip.chip--active::after{
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    pointer-events: none;
+  }
+
+  /* ====== Карти: 1 колона ====== */
+  .catalog #cards,
+  .catalog .cards-grid--catalog,
+  .catalog .cards-grid{
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    margin-inline: 0;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .catalog .card,
+  .catalog #cards .card,
+  .catalog .cards-grid--catalog .card{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
+    border-radius: 16px;
+    min-height: 78px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(17, 39, 152, 0.12);
+    transform: none !important;
+    opacity: 1 !important;
+    padding: 0;
+    height: auto !important;
+  }
+
+  /* media 40% */
+  .catalog .card__media{
+    order: 0;
+    flex: 0 0 40%;
+    max-width: 40%;
+    align-self: stretch;
+    overflow: hidden;
+    border-radius: 0;
+    border-right: 1px solid rgba(226, 232, 255, 0.9);
+
+    position: relative !important;
+    display: flex !important;
+  }
+
+  .catalog .card__media::before{
+    content: none !important;
+    display: none !important;
+    padding-top: 0 !important;
+  }
+
+  .catalog .card__media img{
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .catalog .card__body{
+    order: 1;
+    flex: 1 1 auto;
+    padding: 6px 10px 6px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .catalog .card .title{
+    font-size: 12.5px;
+    line-height: 1.25;
+    font-weight: 800;
+    margin: 0;
+    max-height: 2.4em;
+    overflow: hidden;
+    display: block !important;
+    margin-bottom: 6px;
+  }
+
+  .catalog .card .meta,
+  .catalog .card .specs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 0;
+  }
+
+  .catalog .card .meta span,
+  .catalog .card .specs span{
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .catalog .card .row{
+    margin-top: auto;
+    padding-top: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0px;
+    flex-wrap: wrap;
+  }
+
+  .catalog .card .price{
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .catalog .card .actions{
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+  }
+
+  .catalog .card .actions .btn{
+    height: 26px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .catalog .card .actions .btn.ghost{ display: none; }
+
+  .catalog #cards .card:hover{
+    transform: none;
+    box-shadow: 0 6px 18px rgba(17, 39, 152, 0.12);
+    border-color: rgba(31, 94, 255, 0.08);
+  }
+
+  .empty-state{ padding: 16px; }
+  .load-more-wrap{ margin: 14px 0; }
+
+  .card .meta.meta-secondary span{ display: inline-flex; }
+  .card .meta.meta-secondary span:nth-child(n+4){ display: inline-flex; }
+
+  /* ===== price-type ===== */
+  .price-type{
+    display: inline-flex !important;
+    width: fit-content;
+    max-width: 100%;
+    align-self: flex-start;
+    justify-self: start;
+    white-space: nowrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .14);
+    box-shadow: 0 10px 26px rgba(2, 8, 20, .28);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, .92);
+  }
+
+  .price-type__dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 0 0 3px rgba(255,255,255,.12), 0 10px 18px rgba(2,8,20,.20);
+  }
+
+  .price-type--final{
+    background: linear-gradient(135deg, rgba(34,197,94,.22), rgba(34,197,94,.08));
+    border-color: rgba(34,197,94,.35);
+    color: rgb(33 121 67 / 98%);
+  }
+  .price-type--final .price-type__dot{
+    background: rgb(34,197,94);
+    box-shadow: 0 0 0 3px rgba(34,197,94,.18), 0 10px 18px rgba(2,8,20,.22);
+  }
+
+  .price-stack2{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .price-type--estimate{
+    background: linear-gradient(135deg, rgba(31,94,255,.24), rgba(168,85,247,.12));
+    border-color: rgba(31,94,255,.38);
+    color: rgb(0 83 240 / 98%);
+  }
+  .price-type--estimate .price-type__dot{
+    background: rgb(31,94,255);
+    box-shadow: 0 0 0 3px rgba(31,94,255,.18), 0 10px 18px rgba(2,8,20,.22);
+  }
+}
+
+/* ====== Допълнителни брейкпойнти ====== */
+@media (max-width: 720px) {
+  html { font-size: 13px; }
+
+  body,
+  .catalog { padding-inline: 10px; }
+
+  .catalog .card { min-height: 76px; }
+
+  .catalog .card__media {
+    flex-basis: 42%;
+    max-width: 42%;
+  }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 12px; }
+
+  .catalog { padding-inline: 8px; }
+
+  .catalog .card {
+    border-radius: 14px;
+    min-height: 74px;
+  }
+
+  .catalog .card__media {
+    flex-basis: 44%;
+    max-width: 44%;
+  }
+
+  .catalog .card__media .badge {
+    top: 6px;
+    left: 6px;
+    padding: 3px 8px;
+    font-size: 10px;
+    display: none;
+  }
+
+  .card .row .price{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .chip{
+    padding-inline: 10px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .catalog { padding-inline: 6px; }
+
+  .catalog .card { min-height: 70px; }
+
+  .catalog .card__media {
+    flex-basis: 46%;
+    max-width: 46%;
+  }
+
+  .catalog .card .row { gap: 4px; }
+  .catalog .card .actions { gap: 4px; }
+}
+
+/* Показване на конкретните sheets (тези са ок, по класове sheet--) */
+#panelBody:checked   ~ main .sheets .sheet--body,
+#panelEngine:checked ~ main .sheets .sheet--engine,
+#panelPower:checked  ~ main .sheets .sheet--power,
+#panelExtras:checked ~ main .sheets .sheet--features,
+#panelOrigin:checked ~ main .sheets .sheet--origin {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== MOBILE SHEETS: базов контейнер ===== */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  .sheets{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+    pointer-events: none;
+    display: block;
+  }
+
+  .sheets::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    opacity: 0;
+    transition: opacity 0.24s ease-out;
+    pointer-events: none;
+  }
+
+  .sheets .sheet{
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -12px 30px rgba(15, 23, 42, 0.25);
+    padding: 16px 16px 20px;
+  }
+
+  #panelBrand:checked   ~ main .sheets,
+  #panelModel:checked   ~ main .sheets,
+  #panelFuel:checked    ~ main .sheets,
+  #panelGearbox:checked ~ main .sheets,
+  #panelYear:checked    ~ main .sheets,
+  #panelKm:checked      ~ main .sheets,
+  #panelBody:checked    ~ main .sheets,
+  #panelEngine:checked  ~ main .sheets,
+  #panelPower:checked   ~ main .sheets,
+  #panelExtras:checked  ~ main .sheets,
+  #panelOrigin:checked  ~ main .sheets {
+    pointer-events: auto;
+  }
+
+  #panelBrand:checked   ~ main .sheets::before,
+  #panelModel:checked   ~ main .sheets::before,
+  #panelFuel:checked    ~ main .sheets::before,
+  #panelGearbox:checked ~ main .sheets::before,
+  #panelYear:checked    ~ main .sheets::before,
+  #panelKm:checked      ~ main .sheets::before,
+  #panelBody:checked    ~ main .sheets::before,
+  #panelEngine:checked  ~ main .sheets::before,
+  #panelPower:checked   ~ main .sheets::before,
+  #panelExtras:checked  ~ main .sheets::before,
+  #panelOrigin:checked  ~ main .sheets::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ✅ КОРЕКЦИЯ: показване по класове вместо data-title */
+  #panelBrand:checked   ~ main .sheets .sheet--brand,
+  #panelModel:checked   ~ main .sheets .sheet--model,
+  #panelFuel:checked    ~ main .sheets .sheet--fuel,
+  #panelGearbox:checked ~ main .sheets .sheet--gearbox,
+  #panelYear:checked    ~ main .sheets .sheet--year,
+  #panelKm:checked      ~ main .sheets .sheet--km,
+  #panelBody:checked    ~ main .sheets .sheet--body,
+  #panelEngine:checked  ~ main .sheets .sheet--engine,
+  #panelPower:checked   ~ main .sheets .sheet--power,
+  #panelExtras:checked  ~ main .sheets .sheet--features,
+  #panelOrigin:checked  ~ main .sheets .sheet--origin {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  .catalog .card__media{
+    aspect-ratio: auto !important;
+    height: auto !important;
+    min-height: 100% !important;
+    position: relative !important;
+  }
+
+  .catalog .card__media img{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+}
+
+/* =========================
+   FIX: sheet + overlay (mobile) — върху .catalog-head
+   ========================= */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  .catalog-head .sheets{
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 3000 !important;
+    display: block !important;
+    pointer-events: none !important;
+  }
+
+  .catalog-head .sheets::before{
+    content:"" !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    opacity: 0 !important;
+    transition: opacity .2s ease !important;
+    z-index: 3000 !important;
+    pointer-events: none !important;
+  }
+
+  .catalog-head .sheets .sheet{
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    z-index: 3001 !important;
+
+    max-height: 70vh !important;
+    width: min(480px, calc(100% - 24px)) !important;
+    margin: 0 auto 12px !important;
+
+    transform: translateY(110%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+
+    background: #fff !important;
+    border-radius: 22px 22px 0 0 !important;
+    box-shadow: 0 -18px 40px rgba(3,16,46,.25) !important;
+
+    transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s ease !important;
+  }
+
+  #panelBrand:checked   ~ main .catalog-head .sheets,
+  #panelModel:checked   ~ main .catalog-head .sheets,
+  #panelFuel:checked    ~ main .catalog-head .sheets,
+  #panelGearbox:checked ~ main .catalog-head .sheets,
+  #panelYear:checked    ~ main .catalog-head .sheets,
+  #panelKm:checked      ~ main .catalog-head .sheets,
+  #panelBody:checked    ~ main .catalog-head .sheets,
+  #panelEngine:checked  ~ main .catalog-head .sheets,
+  #panelPower:checked   ~ main .catalog-head .sheets,
+  #panelExtras:checked  ~ main .catalog-head .sheets,
+  #panelOrigin:checked  ~ main .catalog-head .sheets{
+    pointer-events: auto !important;
+  }
+
+  #panelBrand:checked   ~ main .catalog-head .sheets::before,
+  #panelModel:checked   ~ main .catalog-head .sheets::before,
+  #panelFuel:checked    ~ main .catalog-head .sheets::before,
+  #panelGearbox:checked ~ main .catalog-head .sheets::before,
+  #panelYear:checked    ~ main .catalog-head .sheets::before,
+  #panelKm:checked      ~ main .catalog-head .sheets::before,
+  #panelBody:checked    ~ main .catalog-head .sheets::before,
+  #panelEngine:checked  ~ main .catalog-head .sheets::before,
+  #panelPower:checked   ~ main .catalog-head .sheets::before,
+  #panelExtras:checked  ~ main .catalog-head .sheets::before,
+  #panelOrigin:checked  ~ main .catalog-head .sheets::before{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* ✅ КОРЕКЦИЯ: показване по класове вместо data-title */
+  #panelBrand:checked   ~ main .catalog-head .sheets .sheet--brand,
+  #panelModel:checked   ~ main .catalog-head .sheets .sheet--model,
+  #panelFuel:checked    ~ main .catalog-head .sheets .sheet--fuel,
+  #panelGearbox:checked ~ main .catalog-head .sheets .sheet--gearbox,
+  #panelYear:checked    ~ main .catalog-head .sheets .sheet--year,
+  #panelKm:checked      ~ main .catalog-head .sheets .sheet--km,
+  #panelBody:checked    ~ main .catalog-head .sheets .sheet--body,
+  #panelEngine:checked  ~ main .catalog-head .sheets .sheet--engine,
+  #panelPower:checked   ~ main .catalog-head .sheets .sheet--power,
+  #panelExtras:checked  ~ main .catalog-head .sheets .sheet--features,
+  #panelOrigin:checked  ~ main .catalog-head .sheets .sheet--origin{
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* =========================
+   FIX: бутон "Потвърди" в sheets
+   ========================= */
+@media (max-width: 980px){
+
+  .catalog-head .sheets .sheet{
+    padding-bottom: 84px !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__body{
+    padding-bottom: 12px !important;
+    max-height: calc(70vh - 130px) !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__confirm{
+    position: absolute !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+
+    z-index: 3002 !important;
+
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    padding: 13px 14px !important;
+    border-radius: 14px !important;
+
+    background: linear-gradient(90deg,#1f5eff,#4c8bff) !important;
+    color: #fff !important;
+
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .04em !important;
+
+    box-shadow: 0 12px 28px rgba(31,94,255,.45) !important;
+    cursor: pointer !important;
+    -webkit-user-select: none !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__confirm:active{
+    transform: translateY(1px) !important;
+    box-shadow: 0 8px 18px rgba(31,94,255,.40) !important;
+  }
+}
+
+/* =========================
+   PERF: smooth sheets animation (mobile)
+   ========================= */
+@media (max-width: 980px){
+
+  .catalog-head .sheets .sheet{
+    will-change: transform, opacity !important;
+    transform: translate3d(0, 110%, 0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    contain: layout paint !important;
+  }
+
+  .catalog-head .sheets::before{
+    will-change: opacity !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* ✅ КОРЕКЦИЯ: показване по класове вместо data-title */
+  #panelBrand:checked   ~ main .catalog-head .sheets .sheet--brand,
+  #panelModel:checked   ~ main .catalog-head .sheets .sheet--model,
+  #panelFuel:checked    ~ main .catalog-head .sheets .sheet--fuel,
+  #panelGearbox:checked ~ main .catalog-head .sheets .sheet--gearbox,
+  #panelYear:checked    ~ main .catalog-head .sheets .sheet--year,
+  #panelKm:checked      ~ main .catalog-head .sheets .sheet--km,
+  #panelBody:checked    ~ main .catalog-head .sheets .sheet--body,
+  #panelEngine:checked  ~ main .catalog-head .sheets .sheet--engine,
+  #panelPower:checked   ~ main .catalog-head .sheets .sheet--power,
+  #panelExtras:checked  ~ main .catalog-head .sheets .sheet--features,
+  #panelOrigin:checked  ~ main .catalog-head .sheets .sheet--origin{
+    transform: translate3d(0, 0, 0) !important;
+    opacity: 1 !important;
+  }
+
+  .catalog-head .sheets .sheet{
+    transition:
+      transform 180ms cubic-bezier(.2,.85,.2,1),
+      opacity   160ms ease !important;
+  }
+
+  .catalog-head .sheets::before{
+    transition: opacity 160ms ease !important;
+  }
+
+  .catalog-head .sheets .sheet{
+    box-shadow: 0 -10px 22px rgba(3,16,46,.22) !important;
+  }
+}
+
+/* =========================
+   Mobile sheets polish: spacing + bottom snap
+   ========================= */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  .catalog-head .sheets .sheet{
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+
+    border-radius: 22px 22px 0 0 !important;
+    padding: 16px 14px 92px !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__body{
+    gap: 12px !important;
+    padding: 14px 10px 12px !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__body .chip{
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    border-radius: 999px !important;
+    margin: 4px;
+    box-shadow: 0 10px 18px rgba(2,8,20,.12) !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__body{
+    line-height: 1.1 !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__confirm{
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 14px !important;
+  }
+}
+
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+
+  .m-quicksearch{
+    margin: -11% 0 11%;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .m-quicksearch__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 4px 0px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .10);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .16);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+  }
+
+  .m-quicksearch__input{
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    outline: none;
+
+    padding: 0 6px;
+    border-radius: 999px;
+
+    color: rgba(255,255,255,.78);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: .01em;
+  }
+
+  .m-quicksearch__input::placeholder{
+    color: rgba(226,232,240,.55);
+    font-weight: 400;
+  }
+
+  .m-quicksearch__row:focus-within{
+    border-color: rgba(31,94,255,.26);
+    box-shadow: 0 0 0 3px rgba(31,94,255,.18), 0 12px 26px rgba(0,0,0,.18);
+  }
+
+  .m-quicksearch__clear{
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.78);
+
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .m-quicksearch__clear:active{
+    transform: translateY(1px);
+  }
+
+  .meta-secondary .meta-flag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 3px 6px;
+  }
+  .meta-secondary .meta-flag img{
+    width: 18px;
+    height: 12px;
+    border-radius: 3px;
+    object-fit: cover;
+    display:block;
+  }
+}
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse) {
+  #panelBrand:checked   ~ main .catalog-head .sheets .sheet--brand,
+  #panelModel:checked   ~ main .catalog-head .sheets .sheet--model,
+  #panelYear:checked    ~ main .catalog-head .sheets .sheet--year,
+  #panelFuel:checked    ~ main .catalog-head .sheets .sheet--fuel,
+  #panelGearbox:checked ~ main .catalog-head .sheets .sheet--gearbox{
+    transform: translate3d(0,0,0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+/* =========================
+   MOBILE SHEETS — CLEAN OVERRIDE (paste LAST)
+   ========================= */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse){
+
+  .catalog-head .sheets{
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 3000 !important;
+    pointer-events: none !important;
+  }
+
+  /* overlay label-и */
+  .catalog-head .sheets .sheets__overlay{
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(15, 23, 42, .45) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 180ms ease !important;
+    z-index: 3000 !important;
+  }
+
+  /* sheet base */
+  .catalog-head .sheets .sheet{
+    --sheetH: calc(var(--svh) * 70);
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    margin: 0 !important;
+
+    max-height: var(--sheetH) !important;
+
+    transform: translate3d(0, 110%, 0) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+
+    background: #fff !important;
+    border-radius: 22px 22px 0 0 !important;
+    box-shadow: 0 -18px 40px rgba(3,16,46,.25) !important;
+
+    will-change: transform, opacity !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+
+    transition:
+      transform 260ms cubic-bezier(.2,.9,.2,1),
+      opacity   180ms ease !important;
+  }
+
+  /* body scroll вътре */
+  .catalog-head .sheets .sheet .sheet__body{
+    max-height: calc(var(--sheetH) - 130px) !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+
+  /* когато има отворен панел => позволи кликове */
+  #panelBrand:checked,
+  #panelModel:checked,
+  #panelFuel:checked,
+  #panelGearbox:checked,
+  #panelYear:checked,
+  #panelKm:checked,
+  #panelBody:checked,
+  #panelEngine:checked,
+  #panelPower:checked,
+  #panelExtras:checked,
+  #panelOrigin:checked{
+    /* само за четимост – реалната pointer-events логика е по-долу */
+  }
+
+  #panelBrand:checked   ~ main .catalog-head .sheets,
+  #panelModel:checked   ~ main .catalog-head .sheets,
+  #panelFuel:checked    ~ main .catalog-head .sheets,
+  #panelGearbox:checked ~ main .catalog-head .sheets,
+  #panelYear:checked    ~ main .catalog-head .sheets,
+  #panelKm:checked      ~ main .catalog-head .sheets,
+  #panelBody:checked    ~ main .catalog-head .sheets,
+  #panelEngine:checked  ~ main .catalog-head .sheets,
+  #panelPower:checked   ~ main .catalog-head .sheets,
+  #panelExtras:checked  ~ main .catalog-head .sheets,
+  #panelOrigin:checked  ~ main .catalog-head .sheets{
+    pointer-events: auto !important;
+  }
+
+  /* overlay show */
+  #panelBrand:checked   ~ main .catalog-head .sheets .overlay--brand,
+  #panelModel:checked   ~ main .catalog-head .sheets .overlay--model,
+  #panelFuel:checked    ~ main .catalog-head .sheets .overlay--fuel,
+  #panelGearbox:checked ~ main .catalog-head .sheets .overlay--gearbox,
+  #panelYear:checked    ~ main .catalog-head .sheets .overlay--year,
+  #panelKm:checked      ~ main .catalog-head .sheets .overlay--km,
+  #panelBody:checked    ~ main .catalog-head .sheets .overlay--body,
+  #panelEngine:checked  ~ main .catalog-head .sheets .overlay--engine,
+  #panelPower:checked   ~ main .catalog-head .sheets .overlay--power,
+  #panelExtras:checked  ~ main .catalog-head .sheets .overlay--extras,
+  #panelOrigin:checked  ~ main .catalog-head .sheets .overlay--origin{
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* ✅ показване по класове (ВАЖНО за Гориво/Скорости) */
+  #panelBrand:checked   ~ main .catalog-head .sheets .sheet--brand,
+  #panelModel:checked   ~ main .catalog-head .sheets .sheet--model,
+  #panelFuel:checked    ~ main .catalog-head .sheets .sheet--fuel,
+  #panelGearbox:checked ~ main .catalog-head .sheets .sheet--gearbox,
+  #panelYear:checked    ~ main .catalog-head .sheets .sheet--year,
+  #panelKm:checked      ~ main .catalog-head .sheets .sheet--km,
+  #panelBody:checked    ~ main .catalog-head .sheets .sheet--body,
+  #panelEngine:checked  ~ main .catalog-head .sheets .sheet--engine,
+  #panelPower:checked   ~ main .catalog-head .sheets .sheet--power,
+  #panelExtras:checked  ~ main .catalog-head .sheets .sheet--features,
+  #panelOrigin:checked  ~ main .catalog-head .sheets .sheet--origin{
+    transform: translate3d(0,0,0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* по-smooth за хора с motion off */
+  @media (prefers-reduced-motion: reduce){
+    .catalog-head .sheets .sheets__overlay,
+    .catalog-head .sheets .sheet{
+      transition: none !important;
+    }
+  }
+}
+#activeChips .chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#activeChips .chip__x{
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.65);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#activeChips .chip.is-removing{
+  opacity: 0;
+  transform: translateY(1px) scale(.98);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+/* =========================
+   FIX: SHEET chips layout (paste LAST)
+   ========================= */
+@media (max-width: 980.98px), (hover: none) and (pointer: coarse){
+
+  /* 1) sheet body за chips = GRID */
+  .catalog-head .sheets .sheet .sheet__body{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    align-content: start !important;
+  }
+
+  /* 2) когато body е form – връщаме нормално */
+  .catalog-head .sheets .sheet .sheet__body--form{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* 3) махаме margin-и и “плаващи” размери от chip-овете в sheet */
+  .catalog-head .sheets .sheet .sheet__body .chip{
+    margin: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+
+    padding: 11px 12px !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+
+    border-radius: 999px !important;
+    box-shadow: none !important;
+  }
+
+  /* 4) визуално като “pill” и консистентно */
+  .catalog-head .sheets .sheet .sheet__body .chip.chip--select{
+    background: rgba(31,94,255,.08) !important;
+    border: 1px solid rgba(31,94,255,.18) !important;
+    color: #123c93 !important;
+  }
+
+  .catalog-head .sheets .sheet .sheet__body .chip.chip--active{
+    background: linear-gradient(90deg,#1f5eff,#4c8bff) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+
+  /* 5) ако на някои редове имаш дълги текстове (Плъг-ин хибрид) */
+  .catalog-head .sheets .sheet--fuel .sheet__body{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+/* =========================
+   FIX: active chip remove animation
+   ========================= */
+#activeChips .chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#activeChips .chip__x{
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#activeChips .chip.is-removing{
+  opacity: 0;
+  transform: translateY(1px) scale(.98);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+

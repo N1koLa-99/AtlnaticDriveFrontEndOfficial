@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вход | Atlantic Drive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Вход към вътрешната зона на Atlantic Drive." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" content="Вход | Atlantic Drive" />
+  <meta property="og:description" content="Вход към вътрешната зона на Atlantic Drive." />
+  <meta property="og:url" content="https://atlanticdrive.bg/logIn.html" />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:secure_url" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Вход | Atlantic Drive" />
+  <meta name="twitter:description" content="Вход към вътрешната зона на Atlantic Drive." />
+  <meta name="twitter:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --accent: #0ea5e9;
+      --danger: #ef4444;
+      --muted: #64748b;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0%, #0f172a 45%, #020617 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .login-wrapper {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 26px 26px 20px;
+      color: #fff;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+    }
+    h1 {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 0.7rem;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,0.6);
+    }
+    input {
+      width: 100%;
+      background: rgba(15,23,42,.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: #fff;
+      outline: none;
+      font-size: .85rem;
+      transition: border .15s ease;
+    }
+    input:focus {
+      border: 1px solid rgba(14,165,233,1);
+      background: rgba(15,23,42,.6);
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    .btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(120deg, #0ea5e9 0%, #22d3ee 100%);
+      color: #0f172a;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 10px 0;
+      font-size: .9rem;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      transition: transform .1s ease;
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+    .error {
+      background: rgba(239, 68, 68, .12);
+      border: 1px solid rgba(239, 68, 68, .35);
+      color: #fecaca;
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: .7rem;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .success {
+      background: rgba(22, 163, 74, .12);
+      border: 1px solid rgba(22, 163, 74, .35);
+      color: #dcfce7;
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: .7rem;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <h1>Вход</h1>
+    <div class="subtitle">AtlanticDrive – вътрешна зона</div>
+
+    <div id="errorBox" class="error"></div>
+    <div id="successBox" class="success"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="password">Парола</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn" id="loginBtn">
+        Влез
+        <span id="spinner" style="display:none;">⏳</span>
+      </button>
+    </form>
+
+    <div class="footer">
+      Нямаш достъп? Питай администратора.
+    </div>
+  </div>
+
+<script>
+  // ЯВНО задаваме URL-а на API-то
+const API_BASE =
+  (window.API_BASE && typeof window.API_BASE === "string")
+    ? window.API_BASE
+    : (location.hostname === "localhost" || location.hostname === "127.0.0.1"
+        ? "https://atlanticdriveapi.azurewebsites.net"
+        : "https://atlanticdriveapi.azurewebsites.net");
+
+  // --- JWT helpers ---
+  function jwtExp(token) {
+    try { return JSON.parse(atob(token.split('.')[1])).exp || 0; }
+    catch { return 0; }
+  }
+  function isExpired(token) {
+    const exp = jwtExp(token);
+    const now = Math.floor(Date.now() / 1000);
+    return exp && exp < (now - 5); // 5s толеранс
+  }
+  function forceLogout() {
+    localStorage.removeItem("auth");
+    localStorage.removeItem("user");
+    // връщаме на логин страницата само ако не сме вече там
+    if (!location.pathname.toLowerCase().includes("login")) {
+      window.location.href="/logIn";
+    }
+  }
+
+  // ако вече има token и НЕ е изтекъл -> директно към вътрешната страница
+  (function () {
+    const raw = localStorage.getItem("auth");
+    if (!raw) return;
+    const a = JSON.parse(raw);
+    if (a?.token && !isExpired(a.token)) {
+      window.location.href="/my-listings.html";
+    } else {
+      forceLogout();
+    }
+  })();
+
+  const form = document.getElementById("loginForm");
+  const errorBox = document.getElementById("errorBox");
+  const successBox = document.getElementById("successBox");
+  const btn = document.getElementById("loginBtn");
+  const spinner = document.getElementById("spinner");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.style.display = "none";
+    successBox.style.display = "none";
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+      showError("Попълни и двете полета.");
+      return;
+    }
+
+    btn.disabled = true;
+    spinner.style.display = "inline-block";
+
+    try {
+      const res = await fetch(API_BASE + "/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (!res.ok) {
+        if (res.status === 401) {
+          showError("Грешен e-mail или парола.");
+        } else {
+          const txt = await res.text().catch(() => "");
+          showError("Грешка при вход: " + (txt || res.status));
+        }
+        return;
+      }
+
+      const data = await res.json(); // { token, userId, fullName, role, dealerId }
+
+      // пазим токена само в 'auth'
+      const authPayload = {
+        token: data.token,
+        userId: data.userId,
+        fullName: data.fullName,
+        role: data.role,
+        dealerId: data.dealerId
+      };
+      localStorage.setItem("auth", JSON.stringify(authPayload));
+
+      // в 'user' НЕ пазим token (излишен и опасен дубликат)
+      localStorage.setItem("user", JSON.stringify({
+        id: data.userId,
+        name: data.fullName,
+        role: data.role,
+        dealerId: data.dealerId
+      }));
+
+      // допълнителна защита: ако токенът вече е изтекъл (лош часовник/часова зона) -> не пускаме
+      if (!data.token || isExpired(data.token)) {
+        forceLogout();
+        return;
+      }
+
+      showSuccess("Успешен вход. Пренасочване...");
+      window.location.href="/my-listings.html";
+
+    } catch (err) {
+      console.error(err);
+      showError("Неуспешна връзка към сървъра.");
+    } finally {
+      btn.disabled = false;
+      spinner.style.display = "none";
+    }
+  });
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.style.display = "block";
+  }
+  function showSuccess(msg) {
+    successBox.textContent = msg;
+    successBox.style.display = "block";
+  }
+</script>
+
+</body>
+</html>

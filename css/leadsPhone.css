@@ -1,0 +1,651 @@
+﻿/* leadsPhone.css
+   ������� ������ �� ���������� "����������"
+   �������� �� ���� leads.css
+*/
+
+@media (max-width: 768px) {
+
+  /* ========= ���� / BODY / MAIN ========= */
+
+  body.ad-body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    background: var(--bg-page, #e5e7eb);
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .ad-main {
+    min-height: auto;
+  }
+
+  .ad-container.leads-page {
+    padding: 0.6rem 0.75rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .glass-panel {
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm, 0 10px 25px rgba(15, 23, 42, 0.08));
+    background: var(--panel-solid, #ffffff);
+  }
+
+  .muted {
+    font-size: 0.82rem;
+  }
+
+  /* ========= HEADER ========= */
+
+  .ad-header {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    padding: 0.65rem 0.7rem 0.65rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    z-index: 40;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .ad-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .ad-brand-sub {
+    font-size: 0.78rem;
+    color: #9ca3af;
+  }
+
+  .ad-header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+    width: auto;
+    margin-top: 7px;
+  }
+
+  /* �������� ����� �� ������� */
+  #btnLogout {
+    display: none !important;
+  }
+
+  .ad-header-actions .btn-secondary,
+  .ad-header-actions .btn-accent {
+    width: auto;
+    min-width: 0;
+    justify-content: center;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 999px;
+  }
+
+  /* "��� �������" � ��� ����� */
+  #btnBack {
+    background: #2563eb;
+    color: #f9fafb;
+    border-color: #1d4ed8;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4);
+  }
+
+  #btnBack:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+
+  #btnBack:active {
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
+    transform: translateY(0);
+  }
+
+  /* ����� �� ���������/�������� �� ������ � ��������� (��� �� ��� � HTML) */
+  #btnToggleUserClientsMobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: #020617;
+    color: #f9fafb;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.55);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  #btnToggleUserClientsMobile.is-active {
+    background: #0f172a;
+  }
+
+  /* ========= ����� ����� / �������� ========= */
+
+  .leads-table-panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .leads-table-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .leads-title {
+    font-size: 1.25rem;
+    margin: 0 0 2px;
+  }
+
+  .leads-status-text {
+    margin: 2px 0 0;
+    font-size: 0.8rem;
+  }
+
+  .leads-table-hint {
+    margin: 4px 0 6px;
+    font-size: 0.8rem;
+    max-width: none;
+    text-align: left;
+    color: #9ca3af;
+  }
+
+  /* ========= ����� (LEADS) ========= */
+
+  .table-responsive {
+    overflow: visible;
+  }
+
+  .leads-cards {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .lead-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+    background: #f5f7ff;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    overflow: hidden;
+  }
+
+  .lead-card:hover {
+    transform: none;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  }
+
+  /* ========= HEADER �� ������� � ��� + ������� �����, �������� �� ������ ========= */
+
+  .lead-card-header {
+    padding: 10px 11px;
+    display: flex;
+    flex-direction: row;             /* ��� � ����� ���� */
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: radial-gradient(circle at top left, #f9fafb 0, #eef2ff 55%, #e0ecff 100%);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  }
+
+  .lead-card-header-left {
+    display: flex;
+    flex-direction: column;          /* ��� -> ������� */
+    align-items: flex-start;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .lead-card-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .lead-card-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ������� � ������� ��� ����� */
+  .lead-card-phone {
+    font-size: 0.82rem;
+    color: #4b5563;
+  }
+
+  .lead-card-phone a {
+    font-weight: 500;
+  }
+
+  /* ����� ���� � �������� �� + ���� + ������� */
+    .lead-card-header-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        flex-shrink: 0;
+        padding-right: 18px;
+    }
+
+  .lead-card-assigned {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;           /* ������� �� � �������� ������ */
+    gap: 2px;
+    max-width: 130px;
+  }
+
+  .lead-card-assigned-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+  }
+
+  .lead-card-assigned-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #111827;
+    text-align: right;
+  }
+
+  .lead-card-date {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    white-space: nowrap;
+  }
+
+  .lead-card-chevron {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ========= ������� (����������� ����) ========= */
+
+  .lead-card-details {
+    padding: 0 11px 10px;
+  }
+
+  .lead-card.is-open .lead-card-details {
+    padding-top: 8px;
+  }
+
+  .lead-card-sections {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .lead-card-section-title {
+    font-size: 0.72rem;
+  }
+
+  .lead-card-section-body {
+    font-size: 0.82rem;
+  }
+
+  .lead-search {
+    gap: 3px;
+  }
+
+  .lead-chip {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+
+  .lead-client__name {
+    font-size: 0.95rem;
+  }
+
+  .lead-client__contacts {
+    font-size: 0.8rem;
+  }
+
+  /* ========= ������� ========= */
+
+  .lead-notes-list--compact {
+    max-height: 180px;
+    padding: 8px 8px;
+    font-size: 0.82rem;
+  }
+
+  .lead-note-item {
+    padding: 6px 8px 6px 14px;
+    border-radius: 10px;
+  }
+
+  .lead-note-header {
+    font-size: 0.74rem;
+    margin-bottom: 2px;
+  }
+
+  .lead-note-text {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  /* ========= �������� (������) ========= */
+
+  .lead-card-actions {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .lead-card-actions .btn-assign-lead,
+  .lead-card-actions .btn-lead-delete {
+    width: 100%;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* ========= ����� "������������" ========= */
+
+  .ad-modal {
+    align-items: flex-end;
+    padding: 20px 10px 10px;
+  }
+
+  .ad-modal-content {
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 18px 18px 0 0;
+    padding: 14px 14px 16px;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .ad-modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+  }
+
+  .ad-modal-content .muted {
+    margin-bottom: 8px;
+  }
+
+  .field {
+    margin-bottom: 8px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+  }
+
+  .field select {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 7px 9px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.9);
+    box-sizing: border-box;
+  }
+
+  .ad-modal-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 6px;
+  }
+
+  .ad-modal-actions .btn-primary,
+  .ad-modal-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* ========= ������ "������� �� ����� / �����" � ������� �������� ========= */
+
+  #userClientsPanel {
+    margin-top: 6px;
+  }
+
+  #userClientsPanel .leads-table-header {
+    margin-bottom: 4px;
+  }
+
+  #userClientsPanel .leads-table-hint {
+    font-size: 0.78rem;
+  }
+
+  #userClientsPanel .table-responsive {
+    display: block !important;
+    overflow: visible;
+  }
+
+  #tblUserClients {
+    width: 100%;
+    border-spacing: 0;
+  }
+
+  #tblUserClients thead {
+    display: none;
+  }
+
+  #tblUserClients tbody {
+    display: block;
+    width: 100%;
+  }
+
+  #tblUserClients tbody tr {
+    display: block;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 10px 11px;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    position: relative;
+    cursor: pointer;
+  }
+
+  #tblUserClients tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  #tblUserClients tbody tr::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(248, 250, 252, 0.95);
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+    border-top: 2px solid #64748b;
+    border-right: 2px solid #64748b;
+    transform: rotate(135deg);
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  #tblUserClients tbody tr.is-open::after {
+    transform: rotate(-45deg);
+    background: #e0ebff;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  }
+
+  #tblUserClients tbody tr td {
+    display: block;
+    width: 100%;
+    padding: 2px 0;
+    border: 0;
+    background: transparent;
+  }
+
+  #tblUserClients tbody tr td:first-child {
+    padding-top: 0;
+    padding-right: 24px;
+  }
+
+  .user-cell-name {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.95rem;
+  }
+
+  .user-cell-email {
+    margin-top: 2px;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+
+  .user-cell-email .user-email-link {
+    color: #6b7280;
+  }
+
+  .user-cell-count {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    text-align: left;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  .user-cell-count::before {
+    content: none !important;
+  }
+
+  .user-clients-list {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.82rem;
+    color: #111827;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    transition:
+      max-height 0.26s ease,
+      opacity 0.2s ease,
+      padding-top 0.2s ease;
+  }
+
+  #tblUserClients tbody tr.is-open .user-clients-list {
+    max-height: 420px;
+    opacity: 1;
+    padding-top: 4px;
+  }
+
+  .user-client-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .user-client-name {
+    font-weight: 500;
+  }
+
+  .user-client-sep {
+    color: #9ca3af;
+  }
+
+  .user-client-phone {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 0.82rem;
+  }
+
+  .user-client-phone:hover {
+    text-decoration: underline;
+  }
+
+  .user-clients-list.empty-clients {
+    font-style: italic;
+    color: #9ca3af;
+  }
+
+}
+
+/* ����� ������������ �������� �� ���-������� ������ */
+@media (max-width: 480px) {
+
+  .leads-title {
+    font-size: 1.1rem;
+  }
+
+  .leads-table-panel {
+    padding: 8px 10px 9px;
+  }
+
+  .lead-card {
+    padding-bottom: 2px;
+  }
+
+  .lead-notes-list--compact {
+    max-height: 150px;
+  }
+
+  .lead-card-header {
+    padding: 9px 9px;
+  }
+
+  .lead-card-details {
+    padding: 0 9px 8px;
+  }
+
+  .lead-card-actions .btn-assign-lead,
+  .lead-card-actions .btn-lead-delete {
+    padding: 6px 9px;
+    font-size: 0.78rem;
+  }
+
+  .ad-header {
+    padding-inline: 0.6rem;
+  }
+
+  #tblUserClients tbody tr {
+    padding: 8px 9px;
+    margin-bottom: 8px;
+  }
+
+  .user-cell-name {
+    font-size: 0.9rem;
+  }
+
+  .user-cell-email,
+  .user-cell-count,
+  .user-client-item,
+  .user-client-phone {
+    font-size: 0.78rem;
+  }
+}
+

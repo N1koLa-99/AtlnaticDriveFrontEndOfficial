@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Запитвания | Atlantic Drive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Вътрешен панел за управление на клиентските запитвания в Atlantic Drive." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" content="Запитвания | Atlantic Drive" />
+  <meta property="og:description" content="Вътрешен панел за управление на клиентските запитвания в Atlantic Drive." />
+  <meta property="og:url" content="https://atlanticdrive.bg/leads.html" />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:secure_url" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Запитвания | Atlantic Drive" />
+  <meta name="twitter:description" content="Вътрешен панел за управление на клиентските запитвания в Atlantic Drive." />
+  <meta name="twitter:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <link rel="stylesheet" href="./css/style.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-listings.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/leads.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/leadsPhone.css?v=20260502-1224" />
+</head>
+<body class="ad-body">
+  <header class="ad-header">
+    <div class="ad-brand">
+      <strong>Atlantic Drive</strong>
+      <span class="ad-brand-sub">Запитвания</span>
+    </div>
+
+    <div class="ad-header-actions">
+      <button class="btn-secondary" id="btnBack">← Към обявите</button>
+
+      <!-- Нов бутон за панела с клиентите по админ/дилър -->
+      <button class="btn-secondary" id="btnToggleUserClients">
+        Клиенти по админ
+      </button>
+
+      <button class="btn-accent" id="btnLogout">Изход</button>
+    </div>
+  </header>
+
+  <main class="ad-container leads-page">
+    <!-- Панел – списък със запитванията -->
+    <section class="glass-panel leads-table-panel">
+      <div class="leads-table-header">
+        <div class="leads-table-header-left">
+          <h1 class="leads-title">Всички запитвания</h1>
+          <p id="leadsStatus" class="ad-status-text leads-status-text">
+            Зареждане...
+          </p>
+        </div>
+
+        <!-- НОВО: търсачка по телефон -->
+        <div class="leads-phone-search">
+          <input
+            type="text"
+            id="leadPhoneSearch"
+            class="leads-phone-search-input"
+            placeholder="Търси по телефон..."
+            autocomplete="off" />
+          <button
+            type="button"
+            id="leadPhoneSearchClear"
+            class="leads-phone-search-clear">
+            ✕
+          </button>
+        </div>
+
+        <p class="leads-table-hint">
+          Клиентът и източникът са в горната част на картата.
+          Отдолу виждаш служебните бележки и бутоните за пренасочване.
+        </p>
+      </div>
+
+      <!-- Контейнерът за картите се създава/пълни от JS -->
+      <div class="table-responsive">
+        <table class="ad-table leads-table" id="tblLeads" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Клиент</th>
+              <th>Търсене / Обява</th>
+              <th>Детайли</th>
+              <th>Назначен на</th>
+              <th>Дата</th>
+              <th>Бележки / Действия</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyLeads"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Панел – клиенти по админ/дилър (само за глобален админ) -->
+    <section class="glass-panel leads-table-panel" id="userClientsPanel">
+      <div class="leads-table-header">
+        <div class="leads-table-header-left">
+          <h2 class="leads-title">Клиенти по админ / дилър</h2>
+          <p id="userClientsStatus" class="ad-status-text leads-status-text">
+            Зареждане...
+          </p>
+        </div>
+
+        <p class="leads-table-hint">
+          Показва за всеки админ/дилър колко клиента обслужва и кои са те (име и телефон).
+        </p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="ad-table leads-table" id="tblUserClients">
+          <thead>
+            <tr>
+              <th>Админ / дилър</th>
+              <th>Брой клиенти</th>
+              <th>Клиенти (име / телефон)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyUserClients"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Модал за пренасочване на лийд -->
+  <div id="assignModal" class="ad-modal" style="display:none;">
+    <div class="ad-modal-content glass-panel">
+      <h3>Пренасочване на запитване</h3>
+      <p id="assignLeadInfo" class="muted"></p>
+
+      <div class="field">
+        <label for="assignUserSelect">Избери отговорник</label>
+        <select id="assignUserSelect">
+          <option value="">-- Без назначен --</option>
+          <!-- опциите се пълнят от JS -->
+        </select>
+      </div>
+
+      <div class="ad-modal-actions">
+        <button id="assignSubmit" class="btn-primary">Изпрати</button>
+        <button id="assignCancel" class="btn-secondary">Отказ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/api.js?v=20260502-1224"></script>
+  <script src="./js/leads.js?v=20260502-1224"></script>
+</body>
+</html>

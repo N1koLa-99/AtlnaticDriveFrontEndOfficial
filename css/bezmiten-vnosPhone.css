@@ -1,0 +1,255 @@
+﻿/* bezmiten-vnosPhone.css � ������� layout �� ���������� "�������� ����" */
+
+@media (max-width: 768px) {
+
+  /* =====================
+     ���� ������� ���������
+     ===================== */
+
+  .wrap { padding-inline: 16px; }
+
+  /* ����� �� �� � ������ (Atlantic Drive) */
+  .ad-body { background-color: #020617; }
+
+  /* =====================
+     HERO � ����� ����� ������, ��-����
+     ===================== */
+
+  .bm-hero{
+    min-height: 430px;
+    background-position: center right;
+  }
+
+  .bm-hero-inner{
+    padding-block: 150px 0px;
+    align-items: flex-end;
+  }
+
+  .bm-hero-copy{
+    max-width: 100%;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .bm-hero-title{
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  .bm-hero-lead{
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(226,232,240,.70);
+  }
+
+  .bm-hero-actions{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .bm-hero-btn,
+  .bm-hero-link{
+    width: 45%;
+    justify-content: center;
+  }
+
+  /* =====================
+     MAIN WRAP + SECTION HEADERS
+     (dark/glass, �� ��� ���)
+     ===================== */
+
+  .bm-main{
+    padding-top: 16px;
+    padding-bottom: 40px;
+    background: transparent; /* <-- ������ ����� ��� */
+  }
+
+  .bm-section-head{
+    margin: 0 0 18px;
+    text-align: left;
+  }
+
+  .bm-process-head{ margin-top: 18px; }
+
+  .bm-kicker{ font-size: 11px; }
+
+  .bm-section-head h2{
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255,.92);
+  }
+
+  .bm-section-head p{
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(233,241,255,.72);
+  }
+
+  /* =====================
+     1) ����� � 1 ������
+     ===================== */
+
+  .bm-intro-card{
+    grid-template-columns: minmax(0, 1fr);
+    padding: 22px 0 26px;
+    gap: 18px;
+  }
+
+  .bm-intro-title{
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .bm-intro-copy{
+    max-width: none;
+    /* ��� � base css � glass � �������� */
+  }
+
+  .bm-intro-copy p{
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(233,241,255,.78);
+  }
+
+  .bm-intro-photo{
+    min-height: 230px;
+    border-radius: 22px;
+    box-shadow: 0 18px 36px rgba(0,0,0,.45);
+  }
+
+  /* =====================
+     2) ������ � ������������ ����� �� �����
+     ===================== */
+
+  .bm-process{ text-align: left; }
+
+  .bm-process-grid{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin-top: 16px;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    margin-inline: -16px;
+    padding-inline: 16px;
+    padding-bottom: 6px;
+
+    scroll-snap-type: x mandatory;
+  }
+
+  .bm-process-card,
+  .bm-process-cta{
+    flex: 0 0 82%;
+    max-width: 82%;
+    scroll-snap-align: start;
+  }
+
+  .bm-process-card{
+    border-radius: 20px;
+    /* dark/glass � �� ���� ������� ���� */
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: 0 18px 40px rgba(0,0,0,.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .bm-process-img{ height: 190px; }
+
+  .bm-process-body{ padding: 14px 14px 16px; }
+
+  .bm-process-step{
+    font-size: 11px;
+    color: rgba(115,195,255,.62);
+  }
+
+  .bm-process-card h3{
+    font-size: 15px;
+    color: rgba(255,255,255,.92);
+  }
+
+  .bm-process-card p{
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(233,241,255,.72);
+  }
+
+  /* CTA ����� � ��� ���� ����� � ������ (dark) */
+  .bm-process-cta{
+    padding: 18px 16px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .bm-process-cta h3{
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .bm-process-cta p{
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .bm-process-btn{
+    width: 100%;
+    font-size: 14px;
+    padding-block: 9px;
+  }
+
+  /* =====================
+     Footer � ��� � ����� �� ���� ��������
+     ===================== */
+
+  .footer-inner{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-inline: 34px;
+  }
+
+  .footer-left,
+  .footer-nav,
+  .footer-right{ width: 100%; }
+
+  .footer-nav ul{ padding-left: 0; }
+  .footer-links li{ margin-bottom: 4px; }
+  .footer-social{ gap: 10px; }
+
+  /* =====================
+     ������� "�� ���" � ������� ����
+     ===================== */
+
+  .submenu a.is-active{
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .submenu a.is-active::after{
+    left: 18px;
+    right: 18px;
+    bottom: -1px;
+  }
+}
+@media (max-width: 768px) {
+
+  /* HARD STOP �� 100vh / ������ min-height �� base */
+  .bm-hero{
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+.bm-hero-inner {
+        min-height: 0 !important;
+        padding-top: clamp(144px, 12svh, 110px) !important;
+        padding-bottom: 54px !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+    }
+}
+

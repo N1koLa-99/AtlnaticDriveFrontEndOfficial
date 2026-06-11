@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Моите клиенти | Atlantic Drive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Вътрешен панел за управление на клиентите в Atlantic Drive." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" content="Моите клиенти | Atlantic Drive" />
+  <meta property="og:description" content="Вътрешен панел за управление на клиентите в Atlantic Drive." />
+  <meta property="og:url" content="https://atlanticdrive.bg/my-clients.html" />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:secure_url" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Моите клиенти | Atlantic Drive" />
+  <meta name="twitter:description" content="Вътрешен панел за управление на клиентите в Atlantic Drive." />
+  <meta name="twitter:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <link rel="stylesheet" href="./css/style.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-listings.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-clients.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-listingsPhone.css?v=20260502-1224" />
+  <link rel="stylesheet" href="./css/my-clientsPhone.css?v=20260502-1224" />
+</head>
+<body class="ad-body">
+  <header class="ad-header">
+    <div class="ad-brand">
+      <strong>Atlantic Drive</strong>
+      <span class="ad-brand-sub">Моите клиенти</span>
+    </div>
+    <div class="ad-header-actions">
+      <button class="btn-primary" id="btnNewClient">+ Нов клиент</button>
+      <button class="btn-secondary" id="btnBack">← Към обявите</button>
+      <button class="btn-accent" id="btnLogout">Изход</button>
+    </div>
+  </header>
+
+  <main class="ad-container clients-page">
+    <section class="glass-panel clients-panel">
+      <div class="clients-panel-header">
+        <div>
+          <h1 class="clients-title">Моите клиенти</h1>
+          <p id="clientsStatus" class="clients-status">Зареждане...</p>
+        </div>
+
+        <!-- НОВО: търсачка по телефон (ползва същите класове като при запитванията) -->
+        <div class="leads-phone-search">
+          <input
+            type="text"
+            id="clientPhoneSearch"
+            class="leads-phone-search-input"
+            placeholder="Търси по телефон..."
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            id="clientPhoneSearchClear"
+            class="leads-phone-search-clear"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <div id="clientsList" class="clients-list"></div>
+    </section>
+  </main>
+
+  <!-- Модал: Нов клиент -->
+  <div id="clientModal" class="ad-modal" style="display:none;">
+    <div class="ad-modal-content glass-panel">
+      <h3>Нов клиент</h3>
+      <p class="muted">Клиент, който ти търси кола.</p>
+
+      <div class="field">
+        <label for="clientName">Име и фамилия <span class="req">*</span></label>
+        <input id="clientName" />
+      </div>
+
+      <div class="field">
+        <label for="clientPhone">Телефон <span class="req">*</span></label>
+        <input id="clientPhone" placeholder="+359 8X XXX XXXX" />
+      </div>
+
+      <div class="field">
+        <label for="clientEmail">Имейл</label>
+        <input id="clientEmail" type="email" placeholder="client@email.com" />
+      </div>
+
+      <div class="ad-inline">
+        <div class="field">
+          <label for="clientMake">Марка</label>
+          <input id="clientMake" placeholder="BMW / Audi / ..." />
+        </div>
+        <div class="field">
+          <label for="clientModel">Модел</label>
+          <input id="clientModel" placeholder="320d / Q5 / ..." />
+        </div>
+      </div>
+
+      <div class="ad-inline">
+        <div class="field">
+          <label for="clientYear">Година от</label>
+          <input id="clientYear" type="number" min="1990" max="2100" />
+        </div>
+        <div class="field">
+          <label for="clientBudget">Бюджет (макс.)</label>
+          <input id="clientBudget" type="number" />
+        </div>
+        <div class="field">
+          <label for="clientCurrency">Валута</label>
+          <select id="clientCurrency">
+            <option value="BGN">BGN</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="clientNote">Кратко описание</label>
+        <textarea
+          id="clientNote"
+          rows="3"
+          placeholder="Бюджет, изисквания, предпочитана година..."
+        ></textarea>
+      </div>
+
+      <div id="clientModalErr" class="error" style="display:none;"></div>
+
+      <div class="ad-modal-actions">
+        <button id="clientSave" class="btn-primary">Запази</button>
+        <button id="clientCancel" class="btn-secondary">Отказ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/api.js?v=20260502-1224"></script>
+  <script src="./js/my-clients.js?v=20260502-1224"></script>
+</body>
+</html>
