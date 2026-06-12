@@ -1,7 +1,7 @@
-import fs from "fs";
+﻿import fs from "fs";
 
 const DOMAIN = "https://atlanticdrive.bg";
-const API_BASE = "https://atlanticdriveapi.azurewebsites.net";
+const API_BASE = "https://atlanticdrive-api-bzh6dqbhb8fzh0gf.westeurope-01.azurewebsites.net";
 const LISTINGS_URL = `${API_BASE}/api/public/listings`;
 
 const staticPages = [
@@ -19,7 +19,7 @@ const staticPages = [
 function extractArray(payload) {
   if (Array.isArray(payload)) return payload;
 
-  // чести варианти
+  // С‡РµСЃС‚Рё РІР°СЂРёР°РЅС‚Рё
   if (payload?.items && Array.isArray(payload.items)) return payload.items;
   if (payload?.listings && Array.isArray(payload.listings)) return payload.listings;
   if (payload?.data && Array.isArray(payload.data)) return payload.data;
@@ -30,7 +30,7 @@ function extractArray(payload) {
 
 function extractId(x) {
   return (
-    x?.listing_id ??      // ✅ твоят формат
+    x?.listing_id ??      // вњ… С‚РІРѕСЏС‚ С„РѕСЂРјР°С‚
     x?.listingId ??
     x?.ListingId ??
     x?.id ??
@@ -63,7 +63,7 @@ async function fetchAllListings() {
     all.push(...arr);
     skip += take;
 
-    // ако API връща по-малко от take, значи сме накрая
+    // Р°РєРѕ API РІСЂСЉС‰Р° РїРѕ-РјР°Р»РєРѕ РѕС‚ take, Р·РЅР°С‡Рё СЃРјРµ РЅР°РєСЂР°СЏ
     if (arr.length < take) break;
   }
 
@@ -90,10 +90,10 @@ ${urls.map(u => `  <url><loc>${u.replace(/&/g, "&amp;")}</loc></url>`).join("\n"
 `;
 
   fs.writeFileSync("./sitemap.xml", xml, "utf8");
-  console.log(`✅ sitemap.xml generated: ${urls.length} URLs (listings: ${listingPages.length})`);
+  console.log(`вњ… sitemap.xml generated: ${urls.length} URLs (listings: ${listingPages.length})`);
 }
 
 main().catch(err => {
-  console.error("❌", err.message);
+  console.error("вќЊ", err.message);
   process.exit(1);
 });

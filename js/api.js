@@ -5,8 +5,8 @@ const API_BASE =
   (window.API_BASE && typeof window.API_BASE === "string")
     ? window.API_BASE
     : (location.hostname === "localhost" || location.hostname === "127.0.0.1"
-        ? "https://atlanticdriveapi.azurewebsites.net"
-        : "https://atlanticdriveapi.azurewebsites.net");
+        ? "https://atlanticdrive-api-bzh6dqbhb8fzh0gf.westeurope-01.azurewebsites.net"
+        : "https://atlanticdrive-api-bzh6dqbhb8fzh0gf.westeurope-01.azurewebsites.net");
 
 // ✅ Share endpoint (OG meta за iMessage/Messenger)
 const SHARE_BASE =
