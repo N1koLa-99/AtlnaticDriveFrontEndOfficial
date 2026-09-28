@@ -9,6 +9,7 @@ const staticPages = [
   `${DOMAIN}/catalog.html`,
   `${DOMAIN}/bezmiten-vnos.html`,
   `${DOMAIN}/dostavka-avtomobil.html`,
+  `${DOMAIN}/giveaway.html`,
   `${DOMAIN}/leads.html`,
   `${DOMAIN}/logIn.html`,
   `${DOMAIN}/my-clients.html`,
