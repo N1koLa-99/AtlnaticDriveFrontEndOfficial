@@ -23,10 +23,7 @@
      1) Данни от конфигурацията
      ========================================================= */
   function applyConfig() {
-    if (CFG.title) {
-      var t = $("gwTitle");
-      if (t) t.textContent = CFG.title;
-    }
+    // Заглавието на страницата е в HTML-а (с жълтото "Camaro-то"); CFG.title е за pop-up-а.
     if (CFG.prize) {
       var p = $("gwPrize");
       if (p) p.textContent = CFG.prize;
@@ -58,36 +55,132 @@
   }
 
   /* =========================================================
-     2) Оставащо време
+     1б) Хиро с клипа: клипът → надписите остават
      ========================================================= */
-  function startCountdown() {
-    var row = $("gwDeadline");
-    var out = $("gwLeft");
-    if (!row || !out || !CFG.endsAt) return;
+  function startVideoHero() {
+    var hero  = $("gwVh");
+    var video = $("gwVhVideo");
+    if (!hero || !video) return;
 
-    var end = new Date(CFG.endsAt).getTime();
-    if (isNaN(end)) return;
+    var MAX_WAIT_MS = 12000;   // ако клипът не тръгне – показваме надписите така или иначе
+    var ended = false;
 
-    function render() {
-      var diff = end - Date.now();
-      if (diff <= 0) {
-        row.hidden = true;
-        clearInterval(timer);
-        return;
-      }
-      row.hidden = false;
+    // хирото започва под фиксираната навигация и взима останалата височина
+    var nav = document.querySelector(".nav");
+    function fitNav() {
+      if (nav) hero.style.setProperty("--gw-nav-h", nav.offsetHeight + "px");
+    }
+    fitNav();
+    window.addEventListener("resize", fitNav);
 
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor(diff / 3600000) % 24;
-      var m = Math.floor(diff / 60000) % 60;
-
-      if (d > 0)      out.textContent = d + (d === 1 ? " ден и " : " дни и ") + h + " ч.";
-      else if (h > 0) out.textContent = h + " ч. и " + m + " мин.";
-      else            out.textContent = m + " мин.";
+    function showCaptions() {
+      if (ended) return;
+      ended = true;
+      hero.classList.add("is-ended");
     }
 
-    render();
-    var timer = setInterval(render, 30000);
+    video.addEventListener("ended", showCaptions);
+
+    // и последният <source> не става → направо надписите
+    var sources = video.querySelectorAll("source");
+    var lastSrc = sources[sources.length - 1];
+    if (lastSrc) lastSrc.addEventListener("error", showCaptions);
+
+    // предпазител: броим от момента, в който клипът реално тръгне
+    var guard = setTimeout(showCaptions, MAX_WAIT_MS);
+    video.addEventListener("playing", function () {
+      clearTimeout(guard);
+      var left = ((video.duration || 6) - video.currentTime) * 1000;
+      guard = setTimeout(showCaptions, left + 2500);
+    });
+
+    var p = video.play();
+    if (p && p.catch) p.catch(showCaptions);  // autoplay блокиран (напр. Low Power Mode)
+
+    // на компютър текстът е до клипа, не върху него – показваме го веднага
+    if (window.matchMedia("(min-aspect-ratio: 1/1)").matches) showCaptions();
+
+    // бутоните в хирото скролват до секцията
+    [["gwVhCta", "gwJoin"], ["gwVhHow", "gwDraw"]].forEach(function (pair) {
+      var btn = $(pair[0]);
+      if (btn) btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        scrollToEl($(pair[1]));
+      });
+    });
+
+    var more = hero.querySelector(".gw-vh__more");
+    if (more) more.addEventListener("click", function (e) {
+      e.preventDefault();
+      scrollToEl($("gwMain"));
+    });
+  }
+
+  // style.css слага html/body{height:100%} + overflow-x:hidden – тогава window.scrollTo
+  // не мърда страницата. scrollIntoView работи с какъвто и да е контейнер;
+  // отстъпът за навигацията идва от scroll-margin-top в CSS.
+  function scrollToEl(el) {
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* =========================================================
+     2) Колата – сменя ракурсите автоматично, точките – ръчно
+     ========================================================= */
+  function startCarRotator() {
+    var box = $("gwCar");
+    if (!box) return;
+    var imgs = Array.prototype.slice.call(box.querySelectorAll(".gw-car__img"));
+    var dots = Array.prototype.slice.call(box.querySelectorAll(".gw-car__dot"));
+    if (imgs.length < 2) return;
+
+    var EVERY = 4200;
+    var idx = 0;
+    var timer = null;
+
+    function show(n) {
+      if (n === idx) return;
+      var prev = imgs[idx];
+      prev.classList.remove("is-active");
+      prev.classList.add("is-leaving");
+      setTimeout(function () { prev.classList.remove("is-leaving"); }, 900);
+
+      idx = (n + imgs.length) % imgs.length;
+      imgs[idx].classList.add("is-active");
+      dots.forEach(function (d, i) {
+        d.classList.toggle("is-active", i === idx);
+        if (i === idx) d.setAttribute("aria-current", "true");
+        else d.removeAttribute("aria-current");
+      });
+    }
+
+    function play() {
+      clearInterval(timer);
+      timer = setInterval(function () { show(idx + 1); }, EVERY);
+    }
+
+    dots.forEach(function (d, i) {
+      d.addEventListener("click", function () { show(i); play(); });
+    });
+
+    // свайп на телефон
+    var x0 = null;
+    box.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) < 40) return;
+      show(idx + (dx < 0 ? 1 : -1));
+      play();
+    }, { passive: true });
+
+    // пауза, когато табът е скрит
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) clearInterval(timer); else play();
+    });
+
+    play();
   }
 
   /* =========================================================
@@ -113,11 +206,7 @@
     });
 
     if (opts.scroll !== false) {
-      var card = document.querySelector(".gw-card");
-      if (card) {
-        var top = card.getBoundingClientRect().top + window.pageYOffset - 110;
-        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-      }
+      scrollToEl(document.querySelector(".gw-card"));
     }
     if (opts.focus) {
       var el = $(opts.focus);
@@ -520,7 +609,8 @@
 
   /* ---------------- init ---------------- */
   applyConfig();
-  startCountdown();
+  startVideoHero();
+  startCarRotator();
   refreshStep1();
   handleReset();
 })();

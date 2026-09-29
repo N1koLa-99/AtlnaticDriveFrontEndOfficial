@@ -1,188 +1,457 @@
 /* =========================================================
    ATLANTIC DRIVE - GIVEAWAY
-   Step-by-step sign-up. Solid surfaces, one accent, no noise.
+   Тъмносин фон на сайта + жълто (цветът на Camaro-то) за акцент.
    ========================================================= */
 
 .gw{
-  --gw-panel:  #08214f;
-  --gw-panel-2:#061a42;
-  --gw-line:   rgba(255,255,255,.10);
-  --gw-line-2: rgba(255,255,255,.16);
-  --gw-ink:    #eef3ff;
-  --gw-muted:  #9cadd2;
-  --gw-accent: #2f6bff;
-  --gw-accent-2:#4d84ff;
-  --gw-ok:     #38d39f;
-  --gw-bad:    #ff8095;
+  --gw-bg:      #040d22;
+  --gw-bg-2:    #061433;
+  --gw-panel:   #0a1a3f;
+  --gw-panel-2: #07142f;
+  --gw-line:    rgba(255,255,255,.09);
+  --gw-line-2:  rgba(255,255,255,.16);
+  --gw-ink:     #f2f5fc;
+  --gw-muted:   #9fb0d3;
+  --gw-muted-2: #7688b0;
+  --gw-gold:    #ffd21f;
+  --gw-gold-2:  #ffb800;
+  --gw-gold-ink:#1a1400;
+  --gw-accent:  #2f6bff;
+  --gw-ok:      #38d39f;
+  --gw-bad:     #ff8095;
 
-  padding: 132px 0 96px;
+  padding: 0;
   color: var(--gw-ink);
+  background: var(--gw-bg);
 }
-@media (max-width:900px){ .gw{ padding: 112px 0 72px } }
+/* ако хирото с клипа липсва – място за фиксираната навигация */
+main.gw:first-child, .nav-backdrop + main.gw{ padding-top: 104px }
+.gw-vh + main.gw{ padding-top: 0 }
 
-.gw__inner{
+.gw-wrap{
   width: 100%;
-  max-width: 580px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
+@media (max-width:520px){ .gw-wrap{ padding: 0 18px } }
 
-/* ---------- header ---------- */
-.gw-head{ margin-bottom: 30px }
+.gw-sec{
+  position: relative;
+  padding: clamp(64px, 8vw, 112px) 0;
+  border: 0 !important;
+  scroll-margin-top: 80px;   /* под фиксираната навигация */
+}
+html{ scroll-behavior: smooth }
+main.gw{ scroll-margin-top: 104px }
+.gw-card{ scroll-margin-top: 120px }
+@media (max-width:900px){
+  main.gw{ scroll-margin-top: 64px }
+  .gw-card{ scroll-margin-top: 84px }
+}
+/* style.css слага разделителни линии между секциите – тук не ни трябват */
+.gw-sec::before, .gw-sec::after{ content: none !important; display: none !important }
+.gw-sec__head{ margin-bottom: clamp(28px, 4vw, 44px) }
+.gw-sec__head--center{ text-align: center }
+.gw-sec__head--center .gw-kicker{ justify-content: center }
 
-.gw-eyebrow{
-  margin: 0 0 12px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: .18em;
+/* ---------- типография ---------- */
+.gw-kicker{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--gw-accent-2);
+  color: var(--gw-gold);
+}
+.gw-kicker__dot{
+  width: 22px; height: 2px;
+  border-radius: 2px;
+  background: currentColor;
 }
 .gw-h1{
-  margin: 0 0 12px;
-  font-size: clamp(26px, 4.6vw, 34px);
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -.02em;
+  margin: 0 0 18px;
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  text-wrap: balance;
 }
-.gw-sub{
+.gw-h2{
   margin: 0;
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: var(--gw-muted);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  text-wrap: balance;
 }
-.gw-deadline{
-  margin: 16px 0 0;
-  font-size: 13.5px;
-  color: var(--gw-muted);
+.gw-hl{
+  white-space: nowrap;
+  color: var(--gw-gold);
+  text-shadow: 0 0 30px rgba(255,210,31,.35);
+}
+.gw-lead{
+  margin: 0;
+  max-width: 480px;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: #c7d3ee;
+}
+
+/* ---------- жълт бутон ---------- */
+.gw-gold{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border: 0;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 15.5px;
+  font-weight: 900;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gw-gold-ink);
+  background: linear-gradient(135deg, #ffe45c, var(--gw-gold-2));
+  box-shadow: 0 12px 30px rgba(255,196,0,.28), inset 0 1px 0 rgba(255,255,255,.5);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, filter .15s ease;
+}
+.gw-gold:hover{ transform: translateY(-2px); box-shadow: 0 16px 38px rgba(255,196,0,.4), inset 0 1px 0 rgba(255,255,255,.5) }
+.gw-gold:active{ transform: none }
+.gw-gold svg{ transition: transform .2s ease }
+.gw-gold:hover svg{ transform: translateX(3px) }
+
+/* =========================================================
+   1) НАГРАДАТА
+   ========================================================= */
+.gw-prize{
+  overflow: hidden;
+  background:
+    radial-gradient(60% 70% at 78% 55%, rgba(255,210,31,.10), transparent 70%),
+    linear-gradient(180deg, var(--gw-bg) 0%, var(--gw-bg-2) 100%);
+}
+.gw-prize__grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 32px 56px;
+}
+@media (max-width:900px){
+  .gw-prize__grid{ grid-template-columns: 1fr; gap: 8px }
+  .gw-car{ order: -1 }
+}
+
+.gw-facts{
+  list-style: none;
+  margin: 28px 0 32px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.gw-fact{
   display: flex;
   align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--gw-line);
+}
+.gw-fact__ico{
+  flex: 0 0 auto;
+  width: 42px; height: 42px;
+  border-radius: 11px;
+  display: grid; place-items: center;
+  color: var(--gw-gold-ink);
+  background: linear-gradient(135deg, var(--gw-gold), var(--gw-gold-2));
+  box-shadow: 0 6px 16px rgba(255,196,0,.22);
+}
+.gw-fact__body{ display: grid; gap: 2px; min-width: 0 }
+.gw-fact__body strong{ font-size: 15px; font-weight: 800 }
+.gw-fact__body span{ font-size: 13.5px; line-height: 1.45; color: var(--gw-muted) }
+
+@media (max-width:520px){
+  .gw-prize .gw-gold{ width: 100% }
+}
+
+/* ---------- колата на подиум ---------- */
+.gw-car{
+  position: relative;
+  aspect-ratio: 16 / 10.5;
+  isolation: isolate;
+}
+@media (max-width:900px){ .gw-car{ margin: 0 -10px } }
+
+.gw-car__stage{ position: absolute; inset: 0; z-index: -1; pointer-events: none }
+.gw-car__glow{
+  position: absolute;
+  left: 6%; right: 6%; top: 8%; bottom: 14%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,210,31,.34), rgba(255,184,0,.1) 55%, transparent 75%);
+  filter: blur(10px);
+  animation: gw-pulse 5s ease-in-out infinite;
+}
+@keyframes gw-pulse{ 0%,100%{ opacity: .7; transform: scale(.96) } 50%{ opacity: 1; transform: scale(1.04) } }
+
+/* кръгъл подиум с жълт ръб */
+.gw-car__podium{
+  position: absolute;
+  left: 8%; right: 8%; bottom: 6%;
+  height: 18%;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, rgba(0,0,0,.75), rgba(0,0,0,.35) 60%, transparent 100%),
+    radial-gradient(closest-side, #0e1f45, #081533);
+  box-shadow:
+    0 0 0 1px rgba(255,210,31,.35),
+    0 0 40px rgba(255,210,31,.18),
+    inset 0 -8px 24px rgba(255,210,31,.08);
+}
+
+.gw-car__lines{ position: absolute; inset: 0; overflow: hidden }
+.gw-car__lines i{
+  position: absolute;
+  right: -40%;
+  height: 2px;
+  width: 36%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,210,31,.8), transparent);
+  opacity: 0;
+  animation: gw-streak 2.8s linear infinite;
+}
+.gw-car__lines i:nth-child(1){ top: 26%; animation-delay: 0s }
+.gw-car__lines i:nth-child(2){ top: 42%; animation-delay: .7s; width: 24% }
+.gw-car__lines i:nth-child(3){ top: 58%; animation-delay: 1.4s }
+.gw-car__lines i:nth-child(4){ top: 70%; animation-delay: 2.1s; width: 20% }
+@keyframes gw-streak{
+  0%{ transform: translateX(0); opacity: 0 }
+  12%{ opacity: .85 }
+  60%{ opacity: .45 }
+  100%{ transform: translateX(-340%); opacity: 0 }
+}
+
+.gw-car__frames{ position: absolute; inset: 0 }
+.gw-car__img{
+  position: absolute;
+  left: 2%; right: 2%; top: 2%; bottom: 13%;
+  width: 96%; height: 85%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 26px 22px rgba(0,0,0,.55));
+  opacity: 0;
+  transform: translateX(14%) scale(.94);
+  transition: opacity .7s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+  will-change: transform, opacity;
+}
+.gw-car__img.is-active{
+  opacity: 1;
+  transform: none;
+  animation: gw-hover 5s ease-in-out .9s infinite;
+}
+.gw-car__img.is-leaving{ opacity: 0; transform: translateX(-16%) scale(.96) }
+@keyframes gw-hover{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-7px) } }
+
+.gw-car__dots{
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  display: flex;
+  justify-content: center;
   gap: 8px;
 }
-.gw-deadline::before{
-  content:"";
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gw-ok);
-  box-shadow: 0 0 0 4px rgba(56,211,159,.16);
-}
-.gw-deadline strong{ color: var(--gw-ink); font-weight: 700 }
-
-/* ---------- stepper ---------- */
-.gw-stepper{
-  display: flex;
-  list-style: none;
-  margin: 0 0 18px;
+.gw-car__dot{
+  position: relative;
+  width: 8px; height: 8px;
   padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255,255,255,.28);
+  cursor: pointer;
+  transition: width .3s ease, background .3s ease;
+}
+.gw-car__dot::before{ content: ""; position: absolute; inset: -9px } /* по-голяма зона за пръст */
+.gw-car__dot.is-active{ width: 28px; background: var(--gw-gold) }
+
+/* =========================================================
+   2) УЧАСТВАЙ – стъпки + формата
+   ========================================================= */
+.gw-join{
+  background:
+    radial-gradient(50% 60% at 10% 20%, rgba(47,107,255,.10), transparent 70%),
+    var(--gw-bg-2);
+}
+.gw-join__grid{
+  display: grid;
+  grid-template-columns: 280px minmax(0, 640px);
+  justify-content: center;
+  align-items: start;
+  gap: 48px;
+}
+@media (max-width:900px){
+  .gw-join__grid{ grid-template-columns: 1fr; gap: 18px }
+}
+
+/* ---------- стъпки: вертикални на компютър, лента на телефон ---------- */
+.gw-stepper{
+  position: sticky;
+  top: 130px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
 }
 .gw-stepper__i{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  min-width: 0;
   position: relative;
-  padding-right: 10px;
+  display: flex;
+  gap: 16px;
+  padding: 0 0 30px;
 }
+.gw-stepper__i:last-child{ padding-bottom: 0 }
+/* свързваща линия */
 .gw-stepper__i:not(:last-child)::after{
-  content:"";
+  content: "";
   position: absolute;
-  right: 4px;
-  top: 50%;
-  width: 6px; height: 6px;
-  border-top: 1.5px solid var(--gw-line-2);
-  border-right: 1.5px solid var(--gw-line-2);
-  transform: translateY(-50%) rotate(45deg);
+  left: 19px; top: 44px; bottom: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--gw-line-2);
+  transition: background .3s ease;
 }
+.gw-stepper__i.is-done::after{ background: linear-gradient(var(--gw-ok), rgba(56,211,159,.3)) }
+
 .gw-stepper__n{
   flex: 0 0 auto;
-  width: 25px; height: 25px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   display: grid; place-items: center;
-  font-size: 12px; font-weight: 700;
+  font-size: 15px; font-weight: 800;
   color: var(--gw-muted);
-  border: 1.5px solid var(--gw-line-2);
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  background: var(--gw-panel-2);
+  border: 2px solid var(--gw-line-2);
+  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
+.gw-stepper__txt{ display: grid; gap: 3px; padding-top: 8px; min-width: 0 }
 .gw-stepper__t{
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 800;
   color: var(--gw-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color .2s ease;
+  transition: color .25s ease;
 }
+.gw-stepper__d{ font-size: 13px; line-height: 1.45; color: var(--gw-muted-2) }
+
 .gw-stepper__i.is-current .gw-stepper__n{
-  background: var(--gw-accent);
-  border-color: var(--gw-accent);
-  color: #fff;
+  color: var(--gw-gold-ink);
+  background: var(--gw-gold);
+  border-color: var(--gw-gold);
+  box-shadow: 0 0 0 6px rgba(255,210,31,.14);
 }
 .gw-stepper__i.is-current .gw-stepper__t{ color: var(--gw-ink) }
+.gw-stepper__i.is-current .gw-stepper__d{ color: var(--gw-muted) }
+
 .gw-stepper__i.is-done .gw-stepper__n{
-  border-color: rgba(56,211,159,.55);
-  color: var(--gw-ok);
+  border-color: rgba(56,211,159,.6);
+  background: rgba(56,211,159,.1);
   font-size: 0;
 }
 .gw-stepper__i.is-done .gw-stepper__n::before{
-  content:"";
-  width: 10px; height: 6px;
-  border-left: 2px solid var(--gw-ok);
-  border-bottom: 2px solid var(--gw-ok);
+  content: "";
+  width: 12px; height: 7px;
+  border-left: 2.5px solid var(--gw-ok);
+  border-bottom: 2.5px solid var(--gw-ok);
   transform: rotate(-45deg) translate(1px,-1px);
 }
-@media (max-width:520px){
-  .gw-stepper__t{ display: none }
-  .gw-stepper__i{ flex: 0 0 auto; padding-right: 26px }
-  .gw-stepper__i:not(:last-child)::after{ right: 10px }
+.gw-stepper__i.is-done .gw-stepper__t{ color: var(--gw-ink) }
+
+@media (max-width:900px){
+  .gw-stepper{
+    position: static;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .gw-stepper__i{
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    text-align: center;
+  }
+  .gw-stepper__i:not(:last-child)::after{
+    left: calc(50% + 26px); right: calc(-50% + 26px);
+    top: 19px; bottom: auto;
+    width: auto; height: 2px;
+  }
+  .gw-stepper__i.is-done::after{ background: var(--gw-ok) }
+  .gw-stepper__n{ width: 38px; height: 38px; font-size: 14px }
+  .gw-stepper__txt{ padding: 0 }
+  .gw-stepper__t{ font-size: 13px }
+  .gw-stepper__d{ display: none }
 }
 
-/* ---------- card ---------- */
+/* ---------- картата ---------- */
 .gw-card{
-  background: var(--gw-panel);
-  border: 1px solid var(--gw-line);
-  border-radius: 18px;
-  box-shadow: 0 18px 44px rgba(2,10,32,.38);
+  position: relative;
+  padding: 0;                        /* style.css дава padding на всеки <section> */
+  background: linear-gradient(180deg, var(--gw-panel) 0%, var(--gw-panel-2) 100%);
+  border: 1px solid var(--gw-line-2);
+  border-radius: 22px;
+  box-shadow: 0 30px 70px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
   overflow: hidden;
 }
+/* жълта линия отгоре */
+.gw-card::before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gw-gold) 30%, var(--gw-gold-2) 70%, transparent);
+  opacity: .9;
+}
 
-.gw-pane{ display: none; padding: 28px }
-.gw-pane.is-active{ display: block; animation: gw-fade .28s ease both }
-@media (max-width:520px){ .gw-pane{ padding: 22px 18px } }
+.gw-pane{ display: none; padding: 34px }
+.gw-pane.is-active{ display: block; animation: gw-fade .3s ease both }
+@media (max-width:520px){ .gw-pane{ padding: 26px 18px } }
 @keyframes gw-fade{ from{ opacity:0; transform: translateY(8px) } to{ opacity:1; transform:none } }
 
 .gw-pane__title{
-  margin: 0 0 6px;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  margin: 0 0 8px;
+  font-size: clamp(22px, 2.4vw, 26px);
+  font-weight: 900;
+  letter-spacing: -.02em;
 }
 .gw-pane__intro{
-  margin: 0 0 22px;
-  font-size: 14px;
+  margin: 0 0 24px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--gw-muted);
 }
 
-/* ---------- follow blocks (step 1) ---------- */
+/* ---------- блокове за следване (стъпка 1) ---------- */
 .gw-follow{
   border: 1px solid var(--gw-line);
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 12px;
-  background: var(--gw-panel-2);
-  transition: border-color .2s ease;
+  background: rgba(3,10,28,.45);
+  transition: border-color .2s ease, background .2s ease;
 }
-.gw-follow.is-done{ border-color: rgba(56,211,159,.4) }
+.gw-follow:hover{ border-color: var(--gw-line-2) }
+.gw-follow.is-done{ border-color: rgba(56,211,159,.45); background: rgba(56,211,159,.05) }
 
 .gw-follow__row{
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px;
+  gap: 14px;
+  padding: 16px;
 }
 .gw-follow__ico{
   flex: 0 0 auto;
-  width: 36px; height: 36px;
-  border-radius: 9px;
+  width: 42px; height: 42px;
+  border-radius: 11px;
   display: grid; place-items: center;
   color: #fff;
 }
@@ -191,23 +460,23 @@
 .gw-follow__ico--vb{ background: #7360f2 }
 
 .gw-follow__body{ min-width: 0; flex: 1 }
-.gw-follow__t{ margin: 0; font-size: 14.5px; font-weight: 700 }
+.gw-follow__t{ margin: 0; font-size: 15px; font-weight: 800 }
 .gw-follow__s{
-  margin: 2px 0 0;
-  font-size: 12.5px;
+  margin: 3px 0 0;
+  font-size: 13px;
   color: var(--gw-muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .gw-follow__open{
   flex: 0 0 auto;
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 13px;
-  border-radius: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
   font-family: inherit;
-  font-size: 13px; font-weight: 700;
+  font-size: 13px; font-weight: 800;
   line-height: 1.2;
   color: var(--gw-ink);
-  background: transparent;          /* <button> иначе взима светлия фон на браузъра */
+  background: rgba(255,255,255,.05);          /* <button> иначе взима светлия фон на браузъра */
   border: 1px solid var(--gw-line-2);
   cursor: pointer;
   white-space: nowrap;
@@ -215,16 +484,16 @@
   appearance: none;
   transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
-.gw-follow__open:active{ background: rgba(255,255,255,.12) }
-.gw-follow__open:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.3) }
+.gw-follow__open:hover{ background: rgba(255,210,31,.1); border-color: rgba(255,210,31,.5); color: #fff }
+.gw-follow__open:active{ background: rgba(255,210,31,.18) }
 
 .gw-follow__check{
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 11px;
+  padding: 13px 16px;
   border-top: 1px solid var(--gw-line);
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--gw-muted);
   cursor: pointer;
   user-select: none;
@@ -234,22 +503,22 @@
 
 input[type="checkbox"].gw-box{
   flex: 0 0 auto;
-  width: 17px; height: 17px;
+  width: 18px; height: 18px;
   margin: 0;
-  accent-color: var(--gw-accent);
+  accent-color: var(--gw-gold);
   cursor: pointer;
 }
 
 .gw-hint{
-  margin: 0 0 4px;
-  font-size: 12.5px;
+  margin: 6px 0 0;
+  font-size: 13px;
   color: var(--gw-muted);
   min-height: 18px;
   transition: color .2s ease;
 }
 .gw-hint.is-warn{ color: var(--gw-bad) }
 
-/* ---------- form (step 2) ---------- */
+/* ---------- формата (стъпка 2) ---------- */
 .gw-fields{ display: grid; gap: 16px }
 .gw-fields--2{ grid-template-columns: 1fr 1fr }
 @media (max-width:520px){ .gw-fields--2{ grid-template-columns: 1fr } }
@@ -258,41 +527,42 @@ input[type="checkbox"].gw-box{
 .gw-f__lbl{
   display: block;
   margin-bottom: 7px;
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--gw-muted);
 }
 .gw-f__in{
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
+  padding: 14px 15px;
+  border-radius: 12px;
   border: 1px solid var(--gw-line-2);
-  background: var(--gw-panel-2);
+  background: rgba(3,10,28,.55);
   color: var(--gw-ink);
   font-family: inherit;
-  font-size: 15px;
+  font-size: 16px;                      /* 16px – iOS не зумва при фокус */
   line-height: 1.3;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
   -webkit-appearance: none;
   appearance: none;
 }
-.gw-f__in::placeholder{ color: #5d729c }
+.gw-f__in::placeholder{ color: #56688f }
 .gw-f__in:focus{
   outline: none;
-  border-color: var(--gw-accent);
-  box-shadow: 0 0 0 3px rgba(47,107,255,.2);
+  border-color: var(--gw-gold);
+  background: rgba(3,10,28,.75);
+  box-shadow: 0 0 0 4px rgba(255,210,31,.14);
 }
 
 .gw-at{ position: relative; display: block }
 .gw-at__sign{
   position: absolute;
-  left: 14px; top: 50%;
+  left: 15px; top: 50%;
   transform: translateY(-50%);
-  font-size: 15px;
-  color: #5d729c;
+  font-size: 16px;
+  color: #56688f;
   pointer-events: none;
 }
-.gw-at .gw-f__in{ padding-left: 29px }
+.gw-at .gw-f__in{ padding-left: 31px }
 
 .gw-f__err{
   display: none;
@@ -302,28 +572,32 @@ input[type="checkbox"].gw-box{
   color: var(--gw-bad);
 }
 .gw-f.is-bad .gw-f__in{ border-color: var(--gw-bad) }
-.gw-f.is-bad .gw-f__in:focus{ box-shadow: 0 0 0 3px rgba(255,128,149,.16) }
+.gw-f.is-bad .gw-f__in:focus{ box-shadow: 0 0 0 4px rgba(255,128,149,.16) }
 .gw-f.is-bad .gw-f__err{ display: block }
 
 .gw-consent{
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-top: 20px;
-  font-size: 13px;
+  gap: 11px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(3,10,28,.35);
+  border: 1px solid var(--gw-line);
+  font-size: 13.5px;
   line-height: 1.5;
   color: var(--gw-muted);
   cursor: pointer;
 }
 .gw-consent input{ margin-top: 2px }
-.gw-consent.is-bad{ color: var(--gw-bad) }
+.gw-consent.is-bad{ color: var(--gw-bad); border-color: rgba(255,128,149,.45) }
 
-/* ---------- buttons / actions ---------- */
+/* ---------- бутони ---------- */
 .gw-actions{
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 24px;
 }
 .gw-actions--end{ justify-content: flex-end }
 
@@ -332,30 +606,39 @@ input[type="checkbox"].gw-box{
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 13px 22px;
+  padding: 15px 24px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   font-family: inherit;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--gw-accent);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--gw-gold-ink);
+  background: linear-gradient(135deg, #ffe45c, var(--gw-gold-2));
+  box-shadow: 0 10px 24px rgba(255,196,0,.22), inset 0 1px 0 rgba(255,255,255,.45);
   cursor: pointer;
-  transition: background .15s ease, opacity .15s ease;
+  transition: transform .15s ease, box-shadow .2s ease, opacity .15s ease, filter .15s ease;
 }
-.gw-btn:hover:not(:disabled){ background: #245cea }
-.gw-btn:disabled{ opacity: .45; cursor: not-allowed }
-.gw-btn--wide{ width: 100%; padding: 14px 22px }
+.gw-btn:hover:not(:disabled){ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(255,196,0,.34), inset 0 1px 0 rgba(255,255,255,.45) }
+.gw-btn:disabled{
+  opacity: 1;
+  cursor: not-allowed;
+  color: var(--gw-muted-2);
+  background: rgba(255,255,255,.06);
+  box-shadow: inset 0 0 0 1px var(--gw-line-2);
+}
+.gw-btn--wide{ width: 100% }
 .gw-btn--grow{ flex: 1 }
 .gw-btn--ghost{
   background: transparent;
   color: var(--gw-muted);
-  border: 1px solid var(--gw-line-2);
-  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--gw-line-2);
+  font-weight: 700;
 }
-.gw-btn--ghost:hover:not(:disabled){ background: rgba(255,255,255,.06); color: var(--gw-ink) }
-.gw-btn--viber{ background: #7360f2 }
-.gw-btn--viber:hover:not(:disabled){ background: #6450e6 }
+.gw-btn--ghost:hover:not(:disabled){ background: rgba(255,255,255,.06); color: var(--gw-ink); box-shadow: inset 0 0 0 1px var(--gw-line-2) }
+.gw-btn--viber{ color: #fff; background: #7360f2; box-shadow: 0 10px 24px rgba(115,96,242,.3) }
+.gw-btn--viber:hover:not(:disabled){ background: #6450e6; box-shadow: 0 14px 30px rgba(115,96,242,.4) }
 
 .gw-btn.is-busy{ color: transparent; position: relative; pointer-events: none }
 .gw-btn.is-busy::after{
@@ -363,19 +646,19 @@ input[type="checkbox"].gw-box{
   position: absolute; inset: 0; margin: auto;
   width: 18px; height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.35);
-  border-top-color: #fff;
+  border: 2px solid rgba(26,20,0,.3);
+  border-top-color: var(--gw-gold-ink);
   animation: gw-spin .7s linear infinite;
 }
 @keyframes gw-spin{ to{ transform: rotate(360deg) } }
 
-/* ---------- alert ---------- */
+/* ---------- съобщение за грешка ---------- */
 .gw-alert{
   display: none;
   margin: 0 0 18px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 13.5px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  font-size: 14px;
   line-height: 1.5;
   border: 1px solid rgba(255,128,149,.4);
   background: rgba(255,128,149,.1);
@@ -383,16 +666,17 @@ input[type="checkbox"].gw-box{
 }
 .gw-alert.is-on{ display: block }
 
-/* ---------- result (step 3) ---------- */
-.gw-done{ text-align: center; padding: 6px 0 2px }
+/* ---------- резултат (стъпка 3) ---------- */
+.gw-done{ text-align: center; padding: 8px 0 2px }
 
 .gw-done__mark{
-  width: 56px; height: 56px;
-  margin: 0 auto 18px;
+  width: 64px; height: 64px;
+  margin: 0 auto 20px;
   border-radius: 50%;
   display: grid; place-items: center;
   background: rgba(56,211,159,.12);
   border: 1px solid rgba(56,211,159,.45);
+  box-shadow: 0 0 0 8px rgba(56,211,159,.06);
 }
 .gw-done__mark svg{ stroke: var(--gw-ok) }
 .gw-done__mark path{
@@ -402,89 +686,500 @@ input[type="checkbox"].gw-box{
 }
 @keyframes gw-draw{ to{ stroke-dashoffset: 0 } }
 
-.gw-done__mark--hold{ background: rgba(255,196,84,.1); border-color: rgba(255,196,84,.45) }
+.gw-done__mark--hold{ background: rgba(255,196,84,.1); border-color: rgba(255,196,84,.45); box-shadow: 0 0 0 8px rgba(255,196,84,.05) }
 .gw-done__mark--hold svg{ stroke: #ffc454 }
 
-.gw-done__title{ margin: 0 0 10px; font-size: 20px; font-weight: 700 }
+.gw-done__title{ margin: 0 0 10px; font-size: 24px; font-weight: 900; letter-spacing: -.02em }
 .gw-done__txt{
-  margin: 0 auto 22px;
-  max-width: 400px;
-  font-size: 14.5px;
+  margin: 0 auto 24px;
+  max-width: 420px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--gw-muted);
 }
-.gw-done__txt strong{ color: var(--gw-ink); font-weight: 600 }
+.gw-done__txt strong{ color: var(--gw-ink); font-weight: 700 }
 
 .gw-done__note{
   margin: 16px auto 0;
   max-width: 380px;
   font-size: 12.5px;
   line-height: 1.55;
-  color: #7e90b8;
+  color: var(--gw-muted-2);
 }
 .gw-done__links{
-  margin-top: 22px;
+  margin-top: 24px;
   padding-top: 18px;
   border-top: 1px solid var(--gw-line);
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 22px;
   flex-wrap: wrap;
-  font-size: 13.5px;
+  font-size: 14px;
 }
 .gw-done__links a{ color: var(--gw-muted); text-decoration: none }
-.gw-done__links a:hover{ color: var(--gw-ink); text-decoration: underline }
+.gw-done__links a:hover{ color: var(--gw-gold); text-decoration: underline }
 
-/* ---------- terms ---------- */
-.gw-terms{
-  margin-top: 22px;
-  border: 1px solid var(--gw-line);
-  border-radius: 12px;
-  background: rgba(255,255,255,.02);
+/* =========================================================
+   3) ТЕГЛЕНЕТО
+   ========================================================= */
+.gw-draw{
+  background:
+    radial-gradient(40% 60% at 50% 0%, rgba(255,210,31,.07), transparent 70%),
+    var(--gw-bg);
 }
-.gw-terms > summary{
-  padding: 14px 18px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--gw-muted);
-  cursor: pointer;
+.gw-draw__list{
   list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  counter-reset: none;
+}
+@media (max-width:1000px){ .gw-draw__list{ grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+@media (max-width:560px){ .gw-draw__list{ grid-template-columns: 1fr; gap: 12px } }
+
+.gw-draw__i{
+  position: relative;
+  padding: 26px 22px 24px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  border: 1px solid var(--gw-line);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.gw-draw__i:hover{ border-color: rgba(255,210,31,.35); transform: translateY(-3px) }
+.gw-draw__ico{
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  display: grid; place-items: center;
+  color: var(--gw-gold);
+  background: rgba(255,210,31,.1);
+  border: 1px solid rgba(255,210,31,.3);
+}
+.gw-draw__n{
+  position: absolute;
+  top: 20px; right: 22px;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1;
+  color: rgba(255,255,255,.07);
+}
+.gw-draw__t{
+  margin: 18px 0 8px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.gw-draw__p{
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gw-muted);
+}
+@media (max-width:560px){
+  .gw-draw__i{ display: grid; grid-template-columns: 48px 1fr; column-gap: 16px; padding: 20px 18px }
+  .gw-draw__ico{ grid-row: span 2 }
+  .gw-draw__t{ margin: 2px 0 6px }
+  .gw-draw__n{ top: 16px; right: 18px; font-size: 26px }
+}
+
+/* =========================================================
+   4) КОНТАКТ
+   ========================================================= */
+.gw-info{
+  padding-top: 0;
+  background: var(--gw-bg);
+}
+.gw-info__grid{ max-width: 860px }
+
+.gw-contact{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding: 22px 26px;
+  border-radius: 18px;
+  border: 1px solid var(--gw-line);
+  background: rgba(255,255,255,.025);
 }
-.gw-terms > summary::-webkit-details-marker{ display: none }
-.gw-terms > summary::after{
-  content:"";
-  width: 7px; height: 7px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-2px) rotate(45deg);
-  transition: transform .2s ease;
+.gw-contact__t{ margin: 0; font-size: 16px; font-weight: 800 }
+@media (max-width:560px){
+  .gw-contact{ flex-direction: column; align-items: flex-start; gap: 10px }
 }
-.gw-terms[open] > summary{ color: var(--gw-ink) }
-.gw-terms[open] > summary::after{ transform: translateY(1px) rotate(-135deg) }
-.gw-terms ol{
-  margin: 0;
-  padding: 0 18px 18px 36px;
-  font-size: 13px;
-  line-height: 1.7;
+.gw-contact__a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
   color: var(--gw-muted);
+  text-decoration: none;
+  transition: color .15s ease;
 }
-.gw-terms li{ margin-bottom: 7px }
-.gw-terms li:last-child{ margin-bottom: 0 }
-
-.gw-foot{
-  margin: 26px 0 0;
-  text-align: center;
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: #7e90b8;
-}
-.gw-foot a{ color: var(--gw-muted); text-decoration: underline }
-.gw-foot a:hover{ color: var(--gw-ink) }
+.gw-contact__a svg{ color: var(--gw-gold) }
+.gw-contact__a:hover{ color: var(--gw-ink) }
 
 @media (prefers-reduced-motion: reduce){
   .gw-pane.is-active, .gw-done__mark path{ animation: none }
   .gw-done__mark path{ stroke-dashoffset: 0 }
+  .gw-car__glow, .gw-car__img.is-active{ animation: none }
+  .gw-car__lines{ display: none }
+  .gw-car__img, .gw-car__img.is-leaving{ transition: opacity .4s ease; transform: none }
+  .gw-gold, .gw-draw__i{ transition: none }
+}
+
+/* =========================================================
+   ХИРО С КЛИПА – цял екран под навигацията
+   телефон: клипът на цял екран, надписите след края му
+   компютър: клипът в рамка вдясно, текстът вляво от самото начало
+   ========================================================= */
+.gw-vh{
+  --gw-nav-h: 104px;          /* JS го мери от .nav */
+  position: relative;
+  margin-top: var(--gw-nav-h);
+  height: calc(100vh - var(--gw-nav-h));
+  height: calc(100svh - var(--gw-nav-h));
+  min-height: 460px;
+  padding: 0;                 /* style.css дава padding на секциите */
+  overflow: hidden;
+  background: #03060d;
+  container-type: size;       /* надписите се мерят спрямо хирото (cqw/cqh) */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+}
+
+/* слоеве: декор → клип → затъмняване → текст */
+.gw-vh__deco{ z-index: 0 }
+.gw-vh__frame{ z-index: 1 }
+.gw-vh__shade{ z-index: 2 }
+.gw-vh__content{ z-index: 3 }
+.gw-vh__more{ z-index: 4 }
+
+.gw-vh__deco{ display: none }
+
+.gw-vh__frame{
+  position: absolute;
+  inset: 0;
+}
+.gw-vh__video{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 55% 62%;   /* вертикален клип – пазим колата в кадър */
+  transform-origin: 65% 70%;
+}
+.gw-vh.is-ended .gw-vh__video{ animation: gw-kenburns 8s ease-out forwards }
+@keyframes gw-kenburns{ to{ transform: scale(1.06) } }
+
+.gw-vh__tag{ display: none }
+
+/* затъмняване: леко по време на клипа, силно след края – за надписите */
+.gw-vh__shade{
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: rgba(3,8,20,.28);
+  transition: background .8s ease;
+}
+.gw-vh__shade::after{
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3,8,20,.85) 0%, rgba(3,8,20,.4) 36%, transparent 52%),
+    linear-gradient(0deg, rgba(3,8,20,.95) 0%, rgba(3,8,20,.45) 26%, transparent 44%);
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.gw-vh.is-ended .gw-vh__shade{ background: rgba(3,8,20,.42) }
+.gw-vh.is-ended .gw-vh__shade::after{ opacity: 1 }
+
+/* телефон: горе заглавие, долу бутон */
+.gw-vh__content{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7cqh 20px 13cqh;
+}
+.gw-vh__bottom{
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.gw-vh__btns{ display: flex; gap: 12px; width: 100%; justify-content: center }
+.gw-vh__chips, .gw-vh__ghost{ display: none }
+
+.gw-vh__badge{
+  display: inline-block;
+  padding: 7px 13px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #1a1400;
+  background: #ffd21f;
+}
+.gw-vh__big{
+  margin: 14px 0 0;
+  font-size: clamp(48px, min(12cqh, 16cqw), 150px);
+  font-weight: 900;
+  line-height: .88;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0,0,0,.5);
+}
+.gw-vh__big span{
+  color: #ffd21f;
+  text-shadow: 0 0 34px rgba(255,210,31,.55), 0 6px 30px rgba(0,0,0,.5);
+}
+.gw-vh__small{
+  margin: 14px 0 0;
+  font-size: clamp(16px, 2.6cqh, 24px);
+  font-weight: 600;
+  color: #e6ecfa;
+  text-shadow: 0 2px 12px rgba(0,0,0,.6);
+}
+
+.gw-vh__cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(100%, 360px);
+  padding: 17px 26px;
+  border-radius: 14px;
+  font-size: clamp(16px, 2.4cqh, 20px);
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #1a1400;
+  background: linear-gradient(135deg, #ffe45c, #ffc400);
+  box-shadow: 0 14px 34px rgba(255,196,0,.35), inset 0 1px 0 rgba(255,255,255,.5);
+  transition: transform .15s ease, filter .15s ease;
+}
+.gw-vh__cta:hover{ filter: brightness(1.05); transform: translateY(-2px) }
+.gw-vh__cta svg{ transition: transform .2s ease }
+.gw-vh__cta:hover svg{ transform: translateX(3px) }
+.gw-vh__note{
+  margin: 0;
+  max-width: 360px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #d4dcef;
+  text-shadow: 0 1px 8px rgba(0,0,0,.7);
+}
+
+/* "Виж повече" долу в средата */
+.gw-vh__more{
+  position: absolute;
+  left: 50%; bottom: 12px;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+}
+.gw-vh__more svg{ animation: gw-bob 1.6s ease-in-out infinite }
+@keyframes gw-bob{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(5px) } }
+
+/* появяване на надписите: .is-ended (на компютър JS я слага веднага) */
+.gw-vh__badge, .gw-vh__big, .gw-vh__small, .gw-vh__chips,
+.gw-vh__btns, .gw-vh__note, .gw-vh__more{
+  opacity: 0;
+  translate: 0 18px;
+}
+.gw-vh.is-ended .gw-vh__badge{ animation: gw-rise .5s .05s cubic-bezier(.2,.9,.3,1.2) forwards }
+.gw-vh.is-ended .gw-vh__big  { animation: gw-slam .6s .2s cubic-bezier(.2,.9,.3,1.25) forwards }
+.gw-vh.is-ended .gw-vh__small{ animation: gw-rise .5s .55s ease forwards }
+.gw-vh.is-ended .gw-vh__chips{ animation: gw-rise .5s .7s ease forwards }
+.gw-vh.is-ended .gw-vh__btns { animation: gw-rise .5s .85s cubic-bezier(.2,.9,.3,1.2) forwards }
+.gw-vh.is-ended .gw-vh__cta  { animation: gw-glow 1.8s 1.6s ease-in-out infinite }
+.gw-vh.is-ended .gw-vh__note { animation: gw-rise .5s 1s ease forwards }
+.gw-vh.is-ended .gw-vh__more { animation: gw-rise .5s 1.4s ease forwards }
+@keyframes gw-rise{ to{ opacity: 1; translate: 0 0 } }
+@keyframes gw-slam{
+  0%  { opacity: 0; translate: 0 -10px; scale: 1.5 }
+  60% { opacity: 1 }
+  100%{ opacity: 1; translate: 0 0; scale: 1 }
+}
+@keyframes gw-glow{
+  0%,100%{ box-shadow: 0 14px 34px rgba(255,196,0,.35), inset 0 1px 0 rgba(255,255,255,.5) }
+  50%    { box-shadow: 0 14px 44px rgba(255,196,0,.7),  inset 0 1px 0 rgba(255,255,255,.5) }
+}
+
+/* ---------------- КОМПЮТЪР ---------------- */
+@media (min-aspect-ratio: 1/1){
+  .gw-vh{
+    --gw-edge: max(40px, calc((100vw - 1400px) / 2 + 20px));
+    --gw-fh: 84cqh;                          /* височина на рамката */
+    --gw-fw: calc(var(--gw-fh) * 1248 / 1662);
+    background:
+      radial-gradient(55cqh 55cqh at calc(100% - var(--gw-edge) - var(--gw-fw) / 2) 55%, rgba(255,210,31,.22), transparent 70%),
+      radial-gradient(70% 90% at 0% 0%, rgba(47,107,255,.16), transparent 60%),
+      linear-gradient(160deg, #071a45 0%, #040d22 55%, #03081a 100%);
+  }
+
+  /* линии на скорост + фина мрежа */
+  .gw-vh__deco{
+    display: block;
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(70% 80% at 30% 50%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(70% 80% at 30% 50%, #000 20%, transparent 75%);
+  }
+  .gw-vh__deco i{
+    position: absolute;
+    right: calc(var(--gw-edge) + var(--gw-fw) - 20px);
+    height: 2px;
+    width: 120px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,210,31,.75));
+    opacity: 0;
+    animation: gw-speed 2.8s cubic-bezier(.4,0,.6,1) infinite;
+  }
+  .gw-vh__deco i:nth-child(1){ top: 26%; animation-delay: 0s }
+  .gw-vh__deco i:nth-child(2){ top: 40%; animation-delay: .6s; width: 80px }
+  .gw-vh__deco i:nth-child(3){ top: 55%; animation-delay: 1.2s; width: 140px }
+  .gw-vh__deco i:nth-child(4){ top: 68%; animation-delay: 1.8s; width: 70px }
+  .gw-vh__deco i:nth-child(5){ top: 80%; animation-delay: 2.3s; width: 100px }
+  /* излизат изпод рамката и изчезват преди текста */
+  @keyframes gw-speed{
+    0%  { transform: translateX(60%); opacity: 0 }
+    20% { opacity: .9 }
+    100%{ transform: translateX(-40%); opacity: 0 }
+  }
+
+  /* рамката с клипа */
+  .gw-vh__frame{
+    inset: auto;
+    top: 50%;
+    right: var(--gw-edge);
+    width: var(--gw-fw);
+    height: var(--gw-fh);
+    transform: translateY(-50%) rotate(1.5deg);
+    border-radius: 26px;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 0 0 1px rgba(255,210,31,.55),
+      0 0 0 7px rgba(255,210,31,.08),
+      0 40px 90px rgba(0,0,0,.6),
+      0 0 80px rgba(255,210,31,.15);
+    animation: gw-frame-in .9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes gw-frame-in{
+    from{ opacity: 0; transform: translateY(-46%) rotate(4deg) scale(.96) }
+    to  { opacity: 1; transform: translateY(-50%) rotate(1.5deg) }
+  }
+  .gw-vh__video{ object-position: center }
+  .gw-vh.is-ended .gw-vh__video{ animation: none }
+
+  /* табелка с логото – седи точно върху водния знак долу вдясно */
+  .gw-vh__tag{
+    position: absolute;
+    right: 12px; bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px 6px 6px;
+    border-radius: 99px;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    color: #fff;
+    background: rgba(4,13,34,.82);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  .gw-vh__tag img{ width: 28px; height: 28px; border-radius: 50%; object-fit: contain }
+
+  .gw-vh__shade,
+  .gw-vh.is-ended .gw-vh__shade{ background: none }
+  .gw-vh__shade::after{ display: none }
+
+  .gw-vh__content{
+    justify-content: center;
+    gap: 36px;
+    padding: 0 calc(var(--gw-edge) + var(--gw-fw) + 64px) 4cqh var(--gw-edge);
+  }
+  .gw-vh__bottom{ justify-items: start; text-align: left }
+  .gw-vh__btns{ justify-content: flex-start; width: auto }
+  .gw-vh__cta{ width: auto; padding: 18px 30px }
+
+  /* "СПЕЧЕЛИ" е ~4.6 пъти по-широко от размера на шрифта – събира се в лявата част */
+  .gw-vh__big{
+    font-size: clamp(48px, min(14cqh, calc((100cqw - 2 * var(--gw-edge) - var(--gw-fw) - 64px) / 4.6)), 160px);
+    text-shadow: none;
+  }
+  .gw-vh__big span{ text-shadow: 0 0 40px rgba(255,210,31,.45) }
+  .gw-vh__small{ font-size: clamp(18px, 2.8cqh, 26px); color: #c9d5ef; text-shadow: none }
+
+  .gw-vh__chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0;
+  }
+  .gw-vh__chips li{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 99px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #e6ecfa;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .gw-vh__chips svg{ color: #ffd21f }
+
+  .gw-vh__ghost{
+    display: inline-flex;
+    align-items: center;
+    padding: 18px 26px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.04);
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .gw-vh__ghost:hover{ background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4) }
+  .gw-vh__note{ display: none }
+
+  .gw-vh .gw-vh__more{ left: var(--gw-edge); transform: none; justify-items: start }
+}
+
+/* нисък широк екран (лаптоп 1280×720) – по-стегнато */
+@media (min-aspect-ratio: 1/1) and (max-height: 760px){
+  .gw-vh__content{ gap: 24px }
+  .gw-vh__chips{ margin-top: 18px }
+  .gw-vh .gw-vh__more{ display: none }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .gw-vh.is-ended .gw-vh__video, .gw-vh__more svg, .gw-vh__deco i, .gw-vh__frame{ animation: none }
+  .gw-vh.is-ended :is(.gw-vh__badge,.gw-vh__big,.gw-vh__small,.gw-vh__chips,.gw-vh__btns,.gw-vh__note,.gw-vh__more){
+    animation: none; opacity: 1; translate: none;
+  }
 }

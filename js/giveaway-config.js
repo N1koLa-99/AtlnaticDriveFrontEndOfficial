@@ -9,12 +9,12 @@ window.GIVEAWAY_CONFIG = {
 
   /* 2) Текстове на кампанията */
   campaign:  "giveaway-2026",
-  title:     "Игра с награди от Atlantic Drive",
-  prize:     "Пълен пакет „Внос под ключ“ — безплатна проверка по VIN, калкулация и транспорт",
+  title:     "Спечели Camaro-то на Atlantic Drive",
+  prize:     "Победителят ще бъде изтеглен при достигане на 40 000 последователя в Instagram.",
   shortLine: "Участвай безплатно — 1 минута ти трябва.",
 
   /* 3) Краен срок (ISO формат). Остави "" ако не искаш брояч. */
-  endsAt: "2026-10-31T23:59:00+03:00",
+  endsAt: "",
 
   /* 4) Линкове */
   instagram:     "https://www.instagram.com/atlanticdrive.bg/",
@@ -23,7 +23,15 @@ window.GIVEAWAY_CONFIG = {
   /* 5) Поведение на pop-up-а */
   popupDelayMs:     7000,  // след колко ms да изскочи (7 сек.)
   popupCta:         "Участвай", // текст на бутона в pop-up-а
-  popupImage:       "",    // напр. "Images/giveaway-car.png" — изрязана снимка на колата
+  popupHeadline:    "Спечели|Camaro-то", // редовете се делят с "|", последният е в златно
+  popupKicker:      "Atlantic Drive представя",
+  popupVideo:       ["Images/giveaway/camaro-video.mp4"], // клипът вляво в pop-up-а
+  popupImage:       "",    // резервна снимка, ако няма клип
+  popupSpecs: [            // редовете под текста: [етикет, стойност]
+    ["Участие", "Безплатно"],
+    ["Време", "Под 1 минута"]
+  ],
+  popupTape: ["Giveaway", "Chevrolet Camaro", "Atlantic Drive", "Участвай безплатно"], // бягащата златна лента
   popupSnoozeHours: 0,     // 0 = изскача при всяко влизане; напр. 24 = веднъж на денонощие
   showFab:          true,  // кръглият плаващ бутон долу вдясно (на всички страници)
   tipShowMs:        5000,  // балончето до бутона: колко стои видимо
