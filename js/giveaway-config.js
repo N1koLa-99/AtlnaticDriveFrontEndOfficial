@@ -21,7 +21,7 @@ window.GIVEAWAY_CONFIG = {
   viberGroup:    "https://invite.viber.com/?g2=AQAaOoCebDf4zVT0EzjmzOnTO9J52skYypKr6bxJ4LrDqJR0LybVtbddJgtjqrae",
 
   /* 5) Поведение на pop-up-а */
-  popupDelayMs:     7000,  // след колко ms да изскочи (7 сек.)
+  popupDelayMs:     1500,  // след колко ms да изскочи (1,5 сек.)
   popupCta:         "Участвай", // текст на бутона в pop-up-а
   popupHeadline:    "Спечели|Camaro-то", // редовете се делят с "|", последният е в златно
   popupKicker:      "Atlantic Drive представя",
