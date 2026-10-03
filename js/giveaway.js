@@ -97,6 +97,8 @@
     var p = video.play();
     if (p && p.catch) p.catch(showCaptions);  // autoplay блокиран (напр. Low Power Mode)
 
+    coverPlate(hero, video);
+
     // на компютър текстът е до клипа, не върху него – показваме го веднага
     if (window.matchMedia("(min-aspect-ratio: 1/1)").matches) showCaptions();
 
@@ -114,6 +116,52 @@
       e.preventDefault();
       scrollToEl($("gwMain"));
     });
+  }
+
+  /* =========================================================
+     1в) Телефон: бутонът "Участвай" закрива номера в последния кадър
+     ========================================================= */
+  // [ляво, дясно, горе, долу] на номера в последния кадър – в % от клипа (1248×1662)
+  var PLATE_END = [26.5, 43.0, 62.9, 67.8];
+
+  function coverPlate(hero, video) {
+    var frame = video.parentNode;
+    var bottom = hero.querySelector(".gw-vh__bottom");
+    var cta = $("gwVhCta");
+    var desktop = window.matchMedia("(min-aspect-ratio: 1/1)");
+    if (!bottom || !cta) return;
+
+    // невидим маркер върху номера – мерим го след увеличението на клипа
+    var mark = document.createElement("span");
+    mark.className = "gw-vh__plate";
+    mark.setAttribute("aria-hidden", "true");
+    frame.appendChild(mark);
+
+    function placeCta() {
+      if (desktop.matches) return;
+      // object-fit: cover – къде реално стои кадърът в рамката
+      var fw = frame.clientWidth, fh = frame.clientHeight;
+      var vw = video.videoWidth || 1248, vh = video.videoHeight || 1662;
+      var s = Math.max(fw / vw, fh / vh);
+      var pos = getComputedStyle(video).objectPosition.split(" ");
+      var ox = (fw - vw * s) * (parseFloat(pos[0]) || 50) / 100;
+      var oy = (fh - vh * s) * (parseFloat(pos[1]) || 50) / 100;
+      var b = PLATE_END;
+      mark.style.left   = ox + b[0] / 100 * vw * s + "px";
+      mark.style.top    = oy + b[2] / 100 * vh * s + "px";
+      mark.style.width  = (b[1] - b[0]) / 100 * vw * s + "px";
+      mark.style.height = (b[3] - b[2]) / 100 * vh * s + "px";
+
+      // бутонът – поне колкото номера на височина, центриран върху него
+      var h = hero.getBoundingClientRect(), m = mark.getBoundingClientRect();
+      hero.style.setProperty("--gw-cta-minh", Math.ceil(m.height + 8) + "px");
+      var top = (m.top + m.bottom) / 2 - h.top - cta.offsetHeight / 2;
+      top = Math.min(top, h.height - bottom.offsetHeight - 52);  // да не застъпва "Виж повече"
+      hero.style.setProperty("--gw-cta-top", Math.round(top) + "px");
+    }
+    placeCta();
+    video.addEventListener("loadedmetadata", placeCta);
+    window.addEventListener("resize", placeCta);
   }
 
   // style.css слага html/body{height:100%} + overflow-x:hidden – тогава window.scrollTo
@@ -360,7 +408,7 @@
       if (!v) return "Въведи телефон за връзка.";
       var p = normPhone(v);
       if (/^\+359/.test(p)) {
-        if (!/^\+3598[7-9]\d{7}$/.test(p)) return "Провери номера. Пример: 0888 123 456";
+        if (!/^\+359[1-9]\d{7,8}$/.test(p)) return "Провери номера. Пример: 0888 123 456";
         return "";
       }
       if (!/^\+\d{8,15}$/.test(p)) return "Невалиден номер.";

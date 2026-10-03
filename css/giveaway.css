@@ -859,19 +859,22 @@ input[type="checkbox"].gw-box{
 
 .gw-vh__deco{ display: none }
 
+/* телефон: клипът е увеличен – номерът слиза по-ниско и бутонът го закрива в края */
 .gw-vh__frame{
   position: absolute;
   inset: 0;
+  transform: scale(1.2);
+  transform-origin: 50% 28%;
 }
 .gw-vh__video{
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 55% 62%;   /* вертикален клип – пазим колата в кадър */
-  transform-origin: 65% 70%;
+  object-position: 40% 62%;   /* вертикален клип – номерът да е по-близо до средата */
 }
-.gw-vh.is-ended .gw-vh__video{ animation: gw-kenburns 8s ease-out forwards }
-@keyframes gw-kenburns{ to{ transform: scale(1.06) } }
+
+/* невидим маркер върху номера в последния кадър – JS мери по него къде да е бутонът */
+.gw-vh__plate{ position: absolute; visibility: hidden; pointer-events: none }
 
 .gw-vh__tag{ display: none }
 
@@ -903,7 +906,11 @@ input[type="checkbox"].gw-box{
   justify-content: space-between;
   padding: 7cqh 20px 13cqh;
 }
+/* JS слага --gw-cta-top така, че бутонът да покрива номера */
 .gw-vh__bottom{
+  position: absolute;
+  left: 20px; right: 20px;
+  top: var(--gw-cta-top, 72%);
   display: grid;
   justify-items: center;
   gap: 12px;
@@ -945,6 +952,7 @@ input[type="checkbox"].gw-box{
 }
 
 .gw-vh__cta{
+  min-height: var(--gw-cta-minh, 0px);   /* не по-нисък от номера, който закрива */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1002,11 +1010,12 @@ input[type="checkbox"].gw-box{
 .gw-vh.is-ended .gw-vh__big  { animation: gw-slam .6s .2s cubic-bezier(.2,.9,.3,1.25) forwards }
 .gw-vh.is-ended .gw-vh__small{ animation: gw-rise .5s .55s ease forwards }
 .gw-vh.is-ended .gw-vh__chips{ animation: gw-rise .5s .7s ease forwards }
-.gw-vh.is-ended .gw-vh__btns { animation: gw-rise .5s .85s cubic-bezier(.2,.9,.3,1.2) forwards }
+.gw-vh.is-ended .gw-vh__btns { animation: gw-show 0s forwards }   /* телефон: веднага – закрива номера */
 .gw-vh.is-ended .gw-vh__cta  { animation: gw-glow 1.8s 1.6s ease-in-out infinite }
 .gw-vh.is-ended .gw-vh__note { animation: gw-rise .5s 1s ease forwards }
 .gw-vh.is-ended .gw-vh__more { animation: gw-rise .5s 1.4s ease forwards }
 @keyframes gw-rise{ to{ opacity: 1; translate: 0 0 } }
+@keyframes gw-show{ to{ opacity: 1; translate: 0 0 } }
 @keyframes gw-slam{
   0%  { opacity: 0; translate: 0 -10px; scale: 1.5 }
   60% { opacity: 1 }
@@ -1071,6 +1080,7 @@ input[type="checkbox"].gw-box{
     width: var(--gw-fw);
     height: var(--gw-fh);
     transform: translateY(-50%) rotate(1.5deg);
+    transform-origin: center;
     border-radius: 26px;
     overflow: hidden;
     background: #000;
@@ -1086,7 +1096,6 @@ input[type="checkbox"].gw-box{
     to  { opacity: 1; transform: translateY(-50%) rotate(1.5deg) }
   }
   .gw-vh__video{ object-position: center }
-  .gw-vh.is-ended .gw-vh__video{ animation: none }
 
   /* табелка с логото – седи точно върху водния знак долу вдясно */
   .gw-vh__tag{
@@ -1117,9 +1126,10 @@ input[type="checkbox"].gw-box{
     gap: 36px;
     padding: 0 calc(var(--gw-edge) + var(--gw-fw) + 64px) 4cqh var(--gw-edge);
   }
-  .gw-vh__bottom{ justify-items: start; text-align: left }
+  .gw-vh__bottom{ position: static; justify-items: start; text-align: left }
   .gw-vh__btns{ justify-content: flex-start; width: auto }
-  .gw-vh__cta{ width: auto; padding: 18px 30px }
+  .gw-vh__cta{ width: auto; min-height: 0; padding: 18px 30px }
+  .gw-vh.is-ended .gw-vh__btns{ animation: gw-rise .5s .85s cubic-bezier(.2,.9,.3,1.2) forwards }
 
   /* "СПЕЧЕЛИ" е ~4.6 пъти по-широко от размера на шрифта – събира се в лявата част */
   .gw-vh__big{
@@ -1178,7 +1188,7 @@ input[type="checkbox"].gw-box{
 }
 
 @media (prefers-reduced-motion: reduce){
-  .gw-vh.is-ended .gw-vh__video, .gw-vh__more svg, .gw-vh__deco i, .gw-vh__frame{ animation: none }
+  .gw-vh__more svg, .gw-vh__deco i, .gw-vh__frame{ animation: none }
   .gw-vh.is-ended :is(.gw-vh__badge,.gw-vh__big,.gw-vh__small,.gw-vh__chips,.gw-vh__btns,.gw-vh__note,.gw-vh__more){
     animation: none; opacity: 1; translate: none;
   }
