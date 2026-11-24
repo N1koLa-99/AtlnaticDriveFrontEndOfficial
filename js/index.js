@@ -1103,6 +1103,11 @@ ${descVal || "-"}`;
 
             closeDrawer();
             showToast("Заявката е изпратена. Благодарим!");
+
+            // Meta Pixel – Lead само след успешен запис
+            if (typeof window.adTrackLead === "function") {
+              window.adTrackLead({ content_name: "Бърза връзка (popup)" });
+            }
           } else {
             // fallback mailto
             const toEmail = "office@atlanticdrive.bg";

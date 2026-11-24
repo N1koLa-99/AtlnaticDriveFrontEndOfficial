@@ -1,0 +1,123 @@
+/* css/zapitvane.css – самостоятелна страница за запитване (Meta реклами) */
+
+/* style.css слага display:flex на формата – hidden трябва да бие */
+.lp [hidden]{ display:none !important; }
+
+/* style.css прави фона прозрачен; тук фиксираме тъмносиньото */
+html{ background:#061d4b !important; }
+body.lp{
+  margin:0;
+  min-height:100vh;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(900px 500px at 50% -10%, rgba(31,94,255,.35), transparent 70%),
+    var(--primary, #061d4b);
+  color: var(--ink, #eaf1ff);
+}
+
+.lp-wrap{
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.lp-logo{ display:block; width:max-content; margin: 0 auto 18px; }
+.lp-logo img{ display:block; width:150px; height:auto; }
+
+.lp-intro{ text-align:center; margin-bottom: 18px; }
+.lp-intro h1{
+  margin:0 0 8px;
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 900;
+  color:#fff;
+}
+.lp-intro p{
+  margin:0 auto;
+  max-width: 480px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted, #c9d7ff);
+}
+
+.lp-card{
+  border-radius: var(--radius, 22px);
+  overflow:hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  background:#fff;
+}
+.lp-card .cb-form{ overflow:visible; }
+
+.lp-submit{
+  width:100%;
+  min-height:50px;
+  font-size:16px;
+  font-weight:800;
+  border:0;
+  border-radius:14px;
+  cursor:pointer;
+  color:#fff;
+  background: linear-gradient(135deg, var(--brand, #1f5eff), var(--brand-dark, #0d36b8));
+}
+.lp-submit:disabled{ opacity:.7; cursor:default; }
+.lp-submit.is-loading::after{
+  content:"";
+  display:inline-block;
+  width:16px; height:16px;
+  margin-left:10px;
+  vertical-align:-3px;
+  border:2px solid currentColor;
+  border-right-color:transparent;
+  border-radius:50%;
+  animation: lpSpin .75s linear infinite;
+}
+@keyframes lpSpin{ to{ transform: rotate(360deg); } }
+
+.lp-error{
+  margin:0;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fdecec;
+  color:#b42323;
+  font-size:14px;
+}
+.lp-error a{ color:inherit; font-weight:700; }
+
+.lp-success{
+  padding: 36px 22px 30px;
+  text-align:center;
+  color:#0b2b6b;
+}
+.lp-success-icon{
+  width:64px; height:64px;
+  margin: 0 auto 14px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  font-size:32px; font-weight:900;
+  color:#fff;
+  background: linear-gradient(135deg, var(--brand, #1f5eff), var(--brand-light, #6ea1ff));
+}
+.lp-success h2{ margin:0 0 8px; font-size:24px; font-weight:900; }
+.lp-success p{ margin:0 0 20px; color:#4a649e; line-height:1.5; }
+.lp-call{
+  display:block;
+  padding:14px 16px;
+  border-radius:14px;
+  font-weight:800;
+  color:#fff;
+  text-decoration:none;
+  background: linear-gradient(135deg, var(--brand, #1f5eff), var(--brand-dark, #0d36b8));
+}
+.lp-home{
+  display:inline-block;
+  margin-top:14px;
+  font-size:14px;
+  color:#4a649e;
+}
+
+@media (max-width: 640px){
+  .lp-wrap{ padding: 18px 12px 36px; }
+  .lp-intro p{ font-size:14px; }
+}
+
+.lp .cb-field input,
+.lp .cb-field textarea{ font-family: inherit; font-size:16px; } /* 16px = без zoom на iPhone */

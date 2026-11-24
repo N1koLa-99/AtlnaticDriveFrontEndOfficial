@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bg" translate="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Запитване за автомобил – Atlantic Drive</title>
+  <meta name="description" content="Кажете ни каква кола търсите – ще ви върнем обаждане с варианти и крайна цена до България." />
+  <!-- Страница за реклами – не я индексираме -->
+  <meta name="robots" content="noindex,nofollow" />
+
+  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Atlantic Drive" />
+  <meta property="og:title" content="Запитване за автомобил – Atlantic Drive" />
+  <meta property="og:description" content="Кажете ни каква кола търсите – ще ви върнем обаждане с варианти и крайна цена." />
+  <meta property="og:image" content="https://atlanticdrive.bg/Images/og-logo-neon-1200x630.png" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <meta name="theme-color" content="#061d4b" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css?v=20261123-1" />
+  <link rel="stylesheet" href="css/zapitvane.css?v=20261123-1" />
+
+  <!-- Meta Pixel -->
+  <script src="./js/meta-pixel.js?v=20261123-1"></script>
+</head>
+<body class="lp">
+
+  <main class="lp-wrap">
+    <a class="lp-logo" href="/" aria-label="Atlantic Drive – начало">
+      <img src="Images/LogoNeon-340.webp" alt="Atlantic Drive лого" width="150" height="150" />
+    </a>
+
+    <header class="lp-intro">
+      <h1>Каква кола търсите?</h1>
+      <p>Попълнете формата и ще ви звъннем с варианти от САЩ, Канада, Южна Корея или Дубай и крайна цена до България.</p>
+    </header>
+
+    <div class="lp-card" id="lpCard">
+      <form class="cb-form cb-form--segmented" id="cbForm" novalidate>
+        <!-- Секция 1: Контакт -->
+        <section class="cb-section">
+          <header class="cb-section-head">
+            <span class="cb-section-step">1</span>
+            <div>
+              <div class="cb-section-title">Контакти</div>
+              <div class="cb-section-hint">Къде и как да ви потърсим</div>
+            </div>
+          </header>
+
+          <div class="cb-grid cb-grid--2">
+            <label class="cb-field">
+              <span class="cb-lbl">Име и фамилия *</span>
+              <input type="text" id="cbName" required placeholder="Иван Иванов" autocomplete="name" />
+              <small class="cb-err" aria-live="polite"></small>
+            </label>
+
+            <label class="cb-field">
+              <span class="cb-lbl">Телефон *</span>
+              <input type="tel" id="cbPhone" required placeholder="+359 8X XXX XXXX" autocomplete="tel" inputmode="tel" />
+              <small class="cb-err" aria-live="polite"></small>
+            </label>
+          </div>
+
+          <div class="cb-grid cb-grid--1">
+            <label class="cb-field">
+              <span class="cb-lbl">Имейл по желание</span>
+              <input type="email" id="cbEmail" placeholder="client@email.com" autocomplete="email" inputmode="email" />
+              <small class="cb-err" aria-live="polite"></small>
+            </label>
+          </div>
+        </section>
+
+        <!-- Секция 2: Колата -->
+        <section class="cb-section">
+          <header class="cb-section-head">
+            <span class="cb-section-step">2</span>
+            <div>
+              <div class="cb-section-title">Колата, която търсите</div>
+              <div class="cb-section-hint">Марка, модел, година и бюджет</div>
+            </div>
+          </header>
+
+          <div class="cb-grid cb-grid--2">
+            <label class="cb-field">
+              <span class="cb-lbl">Марка</span>
+              <input type="text" id="cbBrand" placeholder="BMW / Audi / ..." />
+            </label>
+
+            <label class="cb-field">
+              <span class="cb-lbl">Модел</span>
+              <input type="text" id="cbModel" placeholder="530i / Q5 / ..." />
+            </label>
+          </div>
+
+          <div class="cb-grid cb-grid--2">
+            <label class="cb-field">
+              <span class="cb-lbl">Година от</span>
+              <input type="number" id="cbYear" min="1990" max="2100" placeholder="2016" inputmode="numeric" />
+              <small class="cb-err" aria-live="polite"></small>
+            </label>
+
+            <label class="cb-field">
+              <span class="cb-lbl">Бюджет (макс.) в евро</span>
+              <input type="number" id="cbBudget" placeholder="35 000 €" inputmode="numeric" />
+              <small class="cb-err" aria-live="polite"></small>
+            </label>
+          </div>
+
+          <div class="cb-grid cb-grid--1">
+            <label class="cb-field">
+              <span class="cb-lbl">Кратко описание</span>
+              <textarea id="cbDesc" rows="3" placeholder="Екстри, цвят, гориво..."></textarea>
+            </label>
+          </div>
+        </section>
+
+        <footer class="cb-footer">
+          <button type="submit" class="btn lp-submit">Изпрати запитване</button>
+          <p class="cb-note muted">Ще ви върнем обаждане възможно най-скоро. Полетата със * са задължителни.</p>
+          <p class="lp-error" id="lpError" role="alert" hidden></p>
+        </footer>
+      </form>
+
+      <!-- Успех -->
+      <div class="lp-success" id="lpSuccess" hidden>
+        <div class="lp-success-icon" aria-hidden="true">✓</div>
+        <h2>Благодарим ви!</h2>
+        <p>Запитването е получено. Ще се свържем с вас в най-кратък срок.</p>
+        <a class="btn lp-call" href="tel:+359878119140">Или звъннете сега: 0878 119 140</a>
+        <a class="lp-home" href="/">Към сайта на Atlantic Drive</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/api.js?v=20261123-1"></script>
+  <script src="./js/zapitvane.js?v=20261123-1"></script>
+</body>
+</html>
